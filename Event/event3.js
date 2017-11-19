@@ -1,5 +1,3 @@
-
-
 function Event() {
 	this.evt2Handlers = {}
 }
@@ -52,6 +50,11 @@ console.log(emitter.listenerCount('iEvent1')) //
 console.log(emitter.listenerCount('iEvent4')) //
 
 
+/*
+{
+	"iEvent": [handler1],
+	'iEvent2': [handler2, handler3]
+}*/
 
 
 
