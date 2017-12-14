@@ -144,6 +144,7 @@ Array.isArray(undefined)
  *  当检测Array实例时, Array.isArray 优于 instanceof,因为Array.isArray能检测iframes
  *
  */
+/*
 var iframe = document.createElement('iframe');
 document.body.appendChild(iframe);
 xArray = window.frames[window.frames.length-1].Array;
@@ -153,13 +154,22 @@ var arr = new xArray(1,2,3); // [1,2,3]
 Array.isArray(arr);  // true
 // Considered harmful, because doesn't work though iframes
 arr instanceof Array; // false
+*/
 
 
+/**
+ * 根据一组参数来创建新的数组实例，支持任意的参数数量和类型。
+ * Arrat.of() 和 Array 构造函数之间的区别在于处理整数参数：
+ * Array.of(7) 创建一个具有单个元素7的数组，二 Array(7) 创建一个包含7个undefined元素的数组。
+ *
+ */
+let arr_of1 = Array.of(7) // [7]
+let arr_of2 = Array.of(1, 2, 3, 4) // [1,2,3]
 
-
-
-
-
+let _arr1 = Array(7) // [,,,,,,]
+let _arr2 = Array(1,2,3,4) // [1.2.3] 
+let obj = {arr_of1, arr_of2, _arr1,_arr2}
+// console.table(obj)
 
 
 
