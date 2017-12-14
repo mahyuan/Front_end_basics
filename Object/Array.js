@@ -66,7 +66,7 @@ var a1 = arr.slice()
 
 
 /**
- * Array.from( arrayLike, mapfn, thisArg ) 从一个伪数组或可迭代的对象中创建一个新的数组实例
+ *  Array.from( arrayLike, mapfn, thisArg ) 从一个伪数组或可迭代的对象中创建一个新的数组实例
  *  后两个参数可选
  *  第一个参数： 类数组对象或可迭代对象
  *  第二个参数： 回调函数，如果设定了该参数，新数组中的每个元素会执行该回调函数
@@ -117,6 +117,48 @@ function combine() {
 }
 var m_c = [1,2,2], n = [2,3,3]
 // console.log(combine(m_c,n))   // [1, 2, 3]
+
+
+
+
+/**
+ * Array.isArray(obj) 用于确定传递的值是否是一个 Array。
+ * 参数： obj
+ * 返回值： 如果对象是Array, 返回true， 否则返回false
+ */
+// 下面的函数调用都返回 true
+Array.isArray([])
+Array.isArray([1])
+Array.isArray(new Array())
+Array.isArray(Array.prototype)
+
+// 下面的函数调用都返回 false
+Array.isArray()
+Array.isArray({})
+Array.isArray(null)
+Array.isArray(undefined)
+//...
+
+/**
+ * instanceif & isArray
+ *  当检测Array实例时, Array.isArray 优于 instanceof,因为Array.isArray能检测iframes
+ *
+ */
+var iframe = document.createElement('iframe');
+document.body.appendChild(iframe);
+xArray = window.frames[window.frames.length-1].Array;
+var arr = new xArray(1,2,3); // [1,2,3]
+
+// Correctly checking for Array
+Array.isArray(arr);  // true
+// Considered harmful, because doesn't work though iframes
+arr instanceof Array; // false
+
+
+
+
+
+
 
 
 
