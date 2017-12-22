@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mhy-web/Algorithm_demo/issues"
   },
-  "homepage": "https://github.com/mhy-web/Algorithm_demo#readme"
+  "homepage": "https://github.com/mhy-web/Algorithm_demo#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1"
+  }
 }
