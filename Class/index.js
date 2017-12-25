@@ -167,6 +167,38 @@ class MyArray extends Array {
 let arr = new MyArray()
 
 
+/**
+ * React.component
+ */
+//square.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+export default function Square(props) { 
+    return (
+      <button className="square" onClick={()=> props.onClick()}>
+        {props.value}
+      </button>
+    );
+} 
+// board.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Square from './square';
+
+export default  class Board extends React.Component {
+  renderSquare(i) {
+    return (
+      <Square />
+    );
+  }
+  render() {
+    return (
+      <div>Hello World!</div>
+    );
+  }
+}
+
 
 
 
