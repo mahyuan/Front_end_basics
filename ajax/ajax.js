@@ -61,6 +61,43 @@ function loadFile (sURL, fCallback /*, 传入参数1, 传入参数2, 等 */) {
 
 
 
+// 事件监控
+var req = new XMLHttpRequest();
+
+req.addEventListener("progress", updateProgress, false);
+req.addEventListener("load", transferComplete, false);
+req.addEventListener("error", transferFailed, false);
+req.addEventListener("abort", transferCanceled, false);
+
+req.open();
+
+// progress on transfers from the server to the client (downloads)
+function updateProgress(evt) {
+  if (evt.lengthComputable) {
+    var percentComplete = evt.loaded / evt.total;
+    ...
+  } else {
+    // Unable to compute progress information since the total size is unknown
+  }
+}
+
+function transferComplete(evt) {
+  alert("The transfer is complete.");
+}
+
+function transferFailed(evt) {
+  alert("An error occurred while transferring the file.");
+}
+
+function transferCanceled(evt) {
+  alert("The transfer has been canceled by the user.");
+}
+
+
+
+
+
+
 
 
 
