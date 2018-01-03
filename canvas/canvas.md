@@ -21,7 +21,7 @@ ctx.moveTo(x,y);
 ctx.lineTo(x1,y1);
 ctx.stroke()
 ```
-每条线段末端样式：
+每条线段末端样式， 默认为 butt
 ```
 ctx.lineCap = "butt";
 ctx.lineCap = "round";
@@ -60,3 +60,82 @@ ctx.fillRect(x,y, x_width, y_width);
  } 
   drawStar(ctx, 120, 200, 300, 300, 30 );
 ```
+
+颜色渐变
+```
+var gradient = ctx.createLinearGradient(0,0,200,0);
+gradient.addColorStop(0,"green");
+gradient.addColorStop(1,"white");
+ctx.fillStyle = gradient;
+ctx.fillRect(10,10,200,100);
+```
+
+
+字体
+```
+ctx.font = "48px serif";
+ctx.strokeText("Hello world", 50, 100);
+```
+
+透明度
+```
+ctx.globalAlpha = 0.5; // 0~1 之间的数值，默认为1
+```
+
+虚线偏移量 ctx.lineDashOffset = value; 
+偏移量是float精度的数字。 初始值为 0.0。
+```
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var offset = 0;
+
+function draw() {
+  ctx.clearRect(0,0, canvas.width, canvas.height);
+  ctx.setLineDash([4, 2]);
+  ctx.lineDashOffset = -offset;
+  ctx.strokeRect(10,10, 100, 100);
+}
+
+function march() {
+  offset++;
+  if (offset > 16) {
+    offset = 0;
+  }
+  draw();
+  setTimeout(march, 20);
+}
+
+march();
+```
+
+相连部分
+ctx.lineJoin 
+```
+ctx.lineJoin = "bevel";
+ctx.lineJoin = "round";
+ctx.lineJoin = "miter";
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
