@@ -196,6 +196,41 @@ import { default as foo } from 'modules';
 // import foo from 'modules';
 
 
+/**
+ * 总结:
+ */
+/**
+ * 方法一 
+ */
+// moduleA.js
+export default function moduleMethod() {}
+//moduleB.js
+import method from './moduleA';
+method();
+
+/**
+ * 方法二
+ */
+//moduleA.js
+export function methodA() {};
+export function methodB() {};
+export function methodC() {};
+
+//moduleB.js
+import {methodA, methodB, methodC} from './moduleA';
+methodA() {};
+methodB() {};
+methodC() {};
+// or 
+import * as util from './moduleA';
+util.methodA() {};
+util.methodB() {};
+util.methodC() {};
+
+
+
+
+
 
 
 
