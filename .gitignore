@@ -1,2 +1,5 @@
 node_modules
 */node_modules
+./ES6-learning/node_modules
+./expressDemo/node_modules
+./ParcelPro/node_modules
