@@ -1,4 +1,4 @@
-// import {A} from './A.js'
+// import A from './A.js'
 const A = require('./A.js')
 class B extends A {
 	constructor (...args) {
@@ -7,4 +7,6 @@ class B extends A {
 	}
 }
 
-new B()
+let b = new B()
+b.sayAge()
+b.sayName()
