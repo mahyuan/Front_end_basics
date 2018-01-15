@@ -1,3 +1,2 @@
-import B from './B.js'
-
-console.info(this)
+// import B from './B.js' 
+const B = require('./B.js')

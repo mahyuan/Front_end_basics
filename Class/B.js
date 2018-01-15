@@ -10,3 +10,5 @@ class B extends A {
 let b = new B()
 b.sayAge()
 b.sayName()
+
+module.exports = B
