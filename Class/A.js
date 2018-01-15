@@ -15,8 +15,8 @@ export default class A {
 
 module.exports = class A {
 	constructor(name, age) {
-		this.age = 21;
-		this.name = "mhy";
+		this.age = age;
+		this.name = name;
 	}
 	sayName() {
 		console.info(`name is ${this.name}`)

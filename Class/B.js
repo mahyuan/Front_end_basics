@@ -1,14 +1,15 @@
 // import A from './A.js'
 const A = require('./A.js')
 class B extends A {
-	constructor (...args) {
-		super(...args);
-		this.age = 22;
+	constructor (name) {
+		super(name);
+
+		// this.age = 22;
 	}
 }
 
 let b = new B()
-b.sayAge()
-b.sayName()
+b.sayAge(22)
+b.sayName('cd')
 
 module.exports = B
