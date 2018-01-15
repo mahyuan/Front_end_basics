@@ -1,4 +1,5 @@
-/*export default class A {
+/*
+export default class A {
 	constructor() {
 		this.age = 21;
 		this.name = "mhy";
@@ -9,10 +10,11 @@
 	sayAge() {
 		console.info(`age is ${this.age}`)
 	}
-}*/
+}
+*/
 
 module.exports = class A {
-	constructor() {
+	constructor(name, age) {
 		this.age = 21;
 		this.name = "mhy";
 	}
@@ -26,6 +28,26 @@ module.exports = class A {
 
 
 /*
+//easout.js
+export default (A, B, rate, cb) => {
+    B = B || 0
+    rate = rate || 2
+
+    function step() {
+        A = A + (B - A) / rate
+
+        if(Math.abs(A - B) < 1) return cb(B)
+
+        cb(A)
+
+        requestAnimationFrame(step)
+    }
+
+    step()
+}
+
+
+//scrollTop.js
 import easout from 'lib/easout'
 
 module.exports = class ScrollTop {
