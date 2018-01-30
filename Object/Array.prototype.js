@@ -55,8 +55,34 @@ Array.prototype.splice()
  * 总之，不要尝试在遍历过程中对原数组进行任何修改，虽然规范对这样的操作进行了详细的定义，但为了可读性和可维护性，请不要这样做。
  */
 
-
-
+/*
+Array.prototype.forEach()
+// 为数组中的每个元素执行一次回调函数。
+Array.prototype.entries() 
+// 返回一个数组迭代器对象，该迭代器会包含所有数组元素的键值对。
+Array.prototype.every()
+// 如果数组中的每个元素都满足测试函数，则返回 true，否则返回 false。
+Array.prototype.some()
+// 如果数组中至少有一个元素满足测试函数，则返回 true，否则返回 false。
+Array.prototype.filter()
+// 将所有在过滤函数中返回 true 的数组元素放进一个新数组中并返回。
+Array.prototype.find() 
+// 找到第一个满足测试函数的元素并返回那个元素的值，如果找不到，则返回 undefined。
+Array.prototype.findIndex() 
+// 找到第一个满足测试函数的元素并返回那个元素的索引，如果找不到，则返回 -1。
+Array.prototype.keys() 
+// 返回一个数组迭代器对象，该迭代器会包含所有数组元素的键。
+Array.prototype.map()
+// 返回一个由回调函数的返回值组成的新数组。
+Array.prototype.reduce()
+// 从左到右为每个数组元素执行一次回调函数，并把上次回调函数的返回值放在一个暂存器中传给下次回调函数，并返回最后一次回调函数的返回值。
+Array.prototype.reduceRight()
+// 从右到左为每个数组元素执行一次回调函数，并把上次回调函数的返回值放在一个暂存器中传给下次回调函数，并返回最后一次回调函数的返回值。
+Array.prototype.values() 
+// 返回一个数组迭代器对象，该迭代器会包含所有数组元素的值。
+Array.prototype[@@iterator]() 
+//和上面的 values() 方法是同一个函数。
+*/
 
 
 
