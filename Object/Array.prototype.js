@@ -15,7 +15,7 @@ Array.prototype.length
 // 方法
 // 修改器方法
 // 下面的这些方法会改变调用它们的对象自身的值：
-/*
+
 Array.prototype.copyWithin()
 Array.prototype.fill()
 
@@ -30,21 +30,19 @@ Array.prototype.unshift() // 传多个参数时， 在数组开头添加多个�
 Array.prototype.sort()  // 默认排序顺序是根据字符串Unicode码点, 可以传个参数，回调函数
 
 Array.prototype.splice()
-*/
+
 
 
 // 访问方法
 // 下面的这些方法绝对不会改变调用它们的对象的值，只会返回一个新的数组或者返回一个其它的期望值。
-/**
- * Array.prototype.concat()
- * Array.prototype.includes()
- * Array.prototype.join()
- * Array.prototype.slice()
- * Array.prototype.toString()
- * Array.prototype.toLocaleString()
- * Array.prototype.indexOf()
- * Array.prototype.lastIndexOf()
- */
+Array.prototype.concat()
+Array.prototype.includes()
+Array.prototype.join()
+Array.prototype.slice()
+Array.prototype.toString()
+Array.prototype.toLocaleString()
+Array.prototype.indexOf()
+Array.prototype.lastIndexOf()
 
 // 迭代方法
 /**
@@ -55,7 +53,7 @@ Array.prototype.splice()
  * 总之，不要尝试在遍历过程中对原数组进行任何修改，虽然规范对这样的操作进行了详细的定义，但为了可读性和可维护性，请不要这样做。
  */
 
-/*
+
 Array.prototype.forEach()
 // 为数组中的每个元素执行一次回调函数。
 Array.prototype.entries() 
@@ -82,7 +80,7 @@ Array.prototype.values()
 // 返回一个数组迭代器对象，该迭代器会包含所有数组元素的值。
 Array.prototype[@@iterator]() 
 //和上面的 values() 方法是同一个函数。
-*/
+
 
 
 
