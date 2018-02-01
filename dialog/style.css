@@ -1,6 +1,17 @@
+dialog {
+    padding: 0;
+    width: 478px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    border: 0;
+}
+
 dialog::backdrop { /* native */
-  background-color: green;
+  background-color: #6aa9dd;
 }
+
 dialog + .backdrop { /* polyfill */
-  background-color: green;
+  background-color: #6aa9dd;
 }
+
