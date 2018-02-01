@@ -1,0 +1,6 @@
+dialog::backdrop { /* native */
+  background-color: green;
+}
+dialog + .backdrop { /* polyfill */
+  background-color: green;
+}

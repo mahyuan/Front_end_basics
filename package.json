@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mhy-web/Algorithm_demo#readme",
   "dependencies": {
-    "bluebird": "^3.5.1"
+    "bluebird": "^3.5.1",
+    "dialog-polyfill": "^0.4.9"
   }
 }

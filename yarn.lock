@@ -5,3 +5,7 @@
 bluebird@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
+
+dialog-polyfill@^0.4.9:
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.4.9.tgz#c690b3727c3d82e0f947bd5b910b32af8a2ef57d"
