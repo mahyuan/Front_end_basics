@@ -16,3 +16,4 @@ fn1(100000)*/
 function fn3(x) {
 	for{let i=1}
 }
+
