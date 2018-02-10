@@ -13,15 +13,28 @@
 	// var arr = []
 
 	function createArr(len) {
-		let a =[]
-		let i = len
-		while(i>=0) {
-			a.push(i--)
+		let i = 0, arr = [], item=0
+
+		while(len>=0 && i<len) {
+			item = Math.floor( Math.random() * len)
+
+			if ( arr.indexOf(item) == -1) {
+				arr.push(item)
+				i++
+			}
 		}
-		return a
+		// let a = new Set(arr)
+		// return [...a]
+		return arr
+
 	}
-	let arr = createArr(99999)
-	console.log(arr, 'arr')
+	
+	let arr = createArr(10000)
+	// console.log(arr, 'arr')
+	console.log(arr.length, 'arr.length')
+	console.time('createArr')
+	console.timeEnd('createArr')
+	console.log(Math.max(...arr), 'max')
 
 	function bubbleSort(data) {
 		var temp = 0
@@ -36,7 +49,8 @@
 		}
 		return data
 	}
-	console.log(bubbleSort(arr), 'bubbleSort')
+	bubbleSort(arr)
+	// console.log(bubbleSort(arr), 'bubbleSort')
 	console.time('bubbleSort') 
 	console.timeEnd('bubbleSort') 
 
@@ -67,7 +81,8 @@
 
 		return data
 	}
-	console.log(selctionSort(arr), 'selctionSort')
+	selctionSort(arr)
+	// console.log(selctionSort(arr), 'selctionSort')
 	console.time('selctionSort') 
 	console.timeEnd('selctionSort') 
 	/** 
@@ -94,8 +109,8 @@
 		}
 		return data
 	}
-
-	console.log(insertionSort(arr), 'insertionSort')
+	insertionSort(arr)
+	// console.log(insertionSort(arr), 'insertionSort')
 	console.time('insertionSort') 
 	console.timeEnd('insertionSort') 
 
@@ -129,8 +144,8 @@
 
 	    return array;
 	}
-
-	console.log(shallSort(arr), 'shallSort')
+	shallSort(arr)
+	// console.log(shallSort(arr), 'shallSort')
 	console.time('shallSort')
 	console.timeEnd('shallSort')
 
@@ -169,7 +184,8 @@
 	        result.push(right.shift());
 	    return result;
 	}
-	console.log(mergeSort(arr), 'mergeSort')
+	mergeSort(arr)
+	// console.log(mergeSort(arr), 'mergeSort')
 	console.time('mergeSort')
 	console.timeEnd('mergeSort')
 
@@ -197,6 +213,7 @@
 	    }
 	    return quickSort( left ).concat( pivot, quickSort( right ));
 	}
+	// quickSort(arr)
 	console.log(quickSort(arr), 'quickSort')
 	console.time('quickSort')
 	console.timeEnd('quickSort')
