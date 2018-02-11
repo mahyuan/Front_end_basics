@@ -116,9 +116,6 @@ class Queue {
 }
 
 
-
-
-
 // let arr = new Queue()
 
 // arr.enqueue(1)
@@ -198,8 +195,6 @@ collect(queues, nums);
 //排序之后
 console.log('排序之后:', nums)
 
-
-
 /**
  * 为充分利用向量空间，克服"假上溢"现象的方法是：将向量空间想象为一个首尾相接的圆环，并称这种向量为循环向量。
  * 存储在其中的队列称为循环队列（Circular Queue）。
@@ -209,7 +204,8 @@ console.log('排序之后:', nums)
  * 于是, 满的判断条件应为：
  * 		(rear+1)%LENGTH == front 。
  * 空的判断条件为:
- * 	 	rear == front。 /
+ * 	 	rear == front。 
+ */
 
 
 
