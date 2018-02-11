@@ -17,9 +17,10 @@
  * back： 读取队列尾的元素；
  * toStrong： 显示队列所有元素；
  * clear： 清空当前队列；
- * empty： 判断队列是否为空.
+ * empty： 判断队列是否为空；
+ * size: 查看队列长度
  */
-
+/*
 // 实现队列
 function Queue() {
 	this.dataStore = [];
@@ -36,9 +37,9 @@ function enqueue(ele) {
 	this.dataStore.push(ele)
 }
 
-function dequeue(ele) {
+function dequeue() {
 	if(this.empty()) return 'This queue is empty';
-	else return this.dataStore.shift();
+	else  this.dataStore.shift();
 }
 
 function front() {
@@ -64,6 +65,199 @@ function empty() {
 	if(this.dataStore.lenght === 0) return true;
 	else return false;
 }
+
+function size() {
+	return this.dataStore.length;
+}
+*/
+
+
+class Queue {
+	constructor () {
+		this.dataStore = []
+	}
+	// 在队尾添加一个元素
+	enqueue(element) {
+		this.dataStore.push(element)
+	}
+	// 删除队首的元素并返回它
+	dequeue() {
+		if(this.empty()) return 'THe dataStore is empty';
+		else return this.dataStore.shift();
+	}
+	// 将队列清空
+	clear() {
+		this.dataStore = []
+	}
+	// 判断队列是否为空
+	empty() {
+		if (this.dataStore.length == 0 ) return true;
+		else return false; 
+	}
+	// 读取队列首的元素；
+	front() {
+		if(this.empty()) return 'THe dataStore is empty';
+		else return this.dataStore[0]
+	}
+	// 读取队列尾的元素；
+	back() {
+		if(this.empty()) return 'THe dataStore is empty';
+		else return this.dataStore[this.dataStore.length -1];
+	}
+	// 打印队列元素
+	toString() {
+		return this.dataStore.toString();
+		// return this.dataStore.join('\n');
+	}
+	// 查看队列长度
+	size() {
+		return this.dataStore.length;
+	}
+}
+
+
+
+
+
+// let arr = new Queue()
+
+// arr.enqueue(1)
+// arr.enqueue(2)
+// arr.enqueue(3)
+// arr.enqueue(4)
+// arr.enqueue(5)
+// arr.enqueue(6)
+// console.log(arr)
+// // arr.dequeue(2)
+// console.log(arr.toString())
+// console.log(arr)
+
+
+/**
+ * 基数排序（radix sort）属于“分配式排序”（distribution sort），它是透过键值的部份资讯，将要排序的元素分配至某些“桶”中，藉以达到排序的作用，
+ * 基数排序法是属于稳定性的排序，其时间复杂度为O (nlog(r)m)，其中r为所采取的基数，而m为堆数，在某些时候，基数排序法的效率高于其它的稳定性排序法。
+ * 先看一下基数排序的的实现步骤（以两位数为例），需要扫描两次，第一次按个位数字进行排序，第二次按十位数字排序，每个数字根据对应的数值分配到到不同的盒子里，
+ * 最后将盒子的数字依次取出，组成新的列表即为排序好的数字。
+ */
+
+/**
+ * 1.假设我们有一串数字，分别为 73, 22, 93, 43, 55, 14, 28, 65, 39, 81
+ * 2.首先根据个位数字排序，放到不同的盒子里
+ * 3.接下来将这些盒子中的数值重新串接起来，成为以下的数列：81, 22, 73, 93, 43, 14, 55, 65, 28, 39
+ * 4.然后根据十位数字排序，再放到不同的盒子里
+ * 5.接下来将这些盒子中的数值重新串接起来，整个数列已经排序完毕：14, 22, 28, 39, 43, 55, 65, 73, 81, 93
+ */
+
+
+
+//根据相应的（个位和十位）数值，将数字分配到相应队列
+function distribution(nums, queues, n, digit) {
+	// digit 表示个位或十位的值
+	for (var i = 0; i < n; i++) {
+		if(digit == 1) {
+			queues[ nums[i] % 10].enqueue(nums[i]);
+		} else {
+			queues[Math.floor(nums[i] / 10 )].enqueue(nums[i]);
+		}
+	}
+	// console.log('queues', queues)
+}
+
+//从队列中收集数字
+function collect( queues, nums ) {
+	var i = 0;
+	for (var digit = 0; digit < 10; digit++ ) {
+		while( !queues[digit].empty()) {
+			nums[i++] = queues[digit].front();
+			queues[digit].dequeue();
+		}
+	}
+}
+
+
+// 基数排序
+var queues = []; // 队列数组
+var nums = [];  // 数字数组
+
+// 选十个0~99的随机数进行排序
+for (var i = 0; i < 10; i++) {
+	queues[i] = new Queue();
+	// [0, 1) * 101 = [0, 101) <=100
+	// floor() 方法执行的是向下取整计算，它返回的是小于或等于函数参数，并且与之最接近的整数。
+	nums[i] = Math.floor(Math.random() * 101);
+}
+
+// 排序之前
+console.log('排序之前:', nums)
+// 基数排序
+distribution( nums, queues, 10, 1);
+collect(queues, nums);
+distribution( nums, queues, 10, 10);
+collect(queues, nums);
+
+//排序之后
+console.log('排序之后:', nums)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
