@@ -7,7 +7,7 @@ emitter.on('iEvent', (...args) => {
 
 
 let handler = function() {
-	console.log('handler')
+	console.log('handler ^_^ !')
 }
 
 emitter.on('iEvent', handler);

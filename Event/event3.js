@@ -27,10 +27,10 @@ Event.prototype.listenerCount = function (evtName) {
 let emitter = new Event();
 
 let handler1 = (...args) => {
-	console.log(`an event occurred ! with respons: ${args}`)
+	console.log(`an event occurred ! with respons: ${args}。。。`)
 }
-let handler2 = () => {console.log(` another handler2`)}
-let handler3 = () => {console.log(` another handler3`)}
+let handler2 = () => {console.log(` another handler2!`)}
+let handler3 = () => {console.log(` another handler3!`)}
 
 emitter.on('iEvent1', handler1)
 
@@ -43,11 +43,11 @@ emitter.emit('iEvent2', handler2)
 emitter.emit('iEvent3', handler3)
 
 
-console.log(emitter.eventNames()) //
+console.log('eventNames:', emitter.eventNames()) //
 
-console.log(emitter.listenerCount('iEvent1')) //
+console.log('listenerCount1:', emitter.listenerCount('iEvent1')) //
 
-console.log(emitter.listenerCount('iEvent4')) //
+console.log('listenerCount2:', emitter.listenerCount('iEvent2')) //
 
 
 /*
