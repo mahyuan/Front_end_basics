@@ -22,8 +22,8 @@ let obj = {};
 const set = new Set(obj); //Set {{}}
 set.add(obj); // Set {{}}
 set.add(obj); // Set {{}}
-set.add({}); // Set {{}, {}}
-set.add({}); // Set {{}, {}}
+//set.add({}); // Set {{}, {}}
+//set.add({}); // Set {{}, {}}
 ```
 ### Set的属性和方法
 #### size属性
