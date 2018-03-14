@@ -17,13 +17,14 @@ const set = new Set();
 console.log(set); //Set { 1, 2, 3, 4, 5
 console.log(set.size); // 5
 ```
+给Set实例多次添加一个空对象`{}`时，每个`{}`实质上是不同的对象实例，所以会添加成功，但是对于一个声明过的对象，不管是否为空，都指向了同一个内存，所以仅第一次添加才会成功。
 ```js
 let obj = {};
-const set = new Set(obj); //Set {{}}
+const set = new Set(); //Set {}
 set.add(obj); // Set {{}}
 set.add(obj); // Set {{}}
-//set.add({}); // Set {{}, {}}
-//set.add({}); // Set {{}, {}}
+set.add({}); // Set {{}, {}}
+set.add({}); // Set {{}, {}, {}}
 ```
 ### Set的属性和方法
 #### size属性
