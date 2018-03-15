@@ -67,8 +67,8 @@ console.log(obj);
 
 
 const obj = {};
-obj.[Symbol('name')]= 'dd';
-obj.[Symbol('name')]= 'aaaa';
+obj[Symbol('name')]= 'dd';
+obj[Symbol('name')]= 'aaaa';
 
 // Class  
 class Person {
@@ -110,22 +110,20 @@ let obj1 = {
 let obj1 = {name: 'ds'}
 let obj2 = {age: 12}
 let obj3 = {city: 'beijing'}
-
-let obj = {}
-obj.assign(obj1, obj2,obj3)
+let obj = Object.assign({}, obj1, obj2, obj3)
 console.log(obj) // {name:'ds', age:12, city: 'beijing'}
 
 
 // 延展操作符 {...obj}  转为数组
 let str = '好天气就该写代码';
 let strArr = [...str]
+// ["好","天","气","就","该","写","代","码"]
 
 let student = {
 	name: 'mhy',
 	age: 22,
 	city: 'beijing'
 }
-// ["好","天","气","就","该","写","代","码"]
 <Person {...student}/>
 //传数据很方便
 
