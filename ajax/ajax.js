@@ -75,7 +75,7 @@ req.open();
 function updateProgress(evt) {
   if (evt.lengthComputable) {
     var percentComplete = evt.loaded / evt.total;
-    ...
+    // ...
   } else {
     // Unable to compute progress information since the total size is unknown
   }
