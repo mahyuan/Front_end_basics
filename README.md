@@ -14,6 +14,3 @@
 - express
 - commonJS
 - mysql
-
- -
- 
