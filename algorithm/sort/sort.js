@@ -1,3 +1,4 @@
+let createArr = require('./createArr.js')
 /**
  * 冒泡排序 BubbleSort
  * 冒泡排序的算法思想如下（升序排序）：
@@ -9,24 +10,8 @@
 // var arr = [22,32,11,22,43,90,53,43,23,54,19]
 // var arr = []
 
-function createArr(len) {
-	let i = 0, arr = [], item=0
 
-	while(len>=0 && i<len) {
-		item = Math.floor( Math.random() * len)
-
-		if ( arr.indexOf(item) == -1) {
-			arr.push(item)
-			i++
-		}
-	}
-	// let a = new Set(arr)
-	// return [...a]
-	return arr
-
-}
-
-let arr = createArr(10000)
+let arr = createArr(1000)
 // console.log(arr, 'arr')
 console.log(arr.length, 'arr.length')
 console.time('createArr')
@@ -210,8 +195,17 @@ function quickSort( arr ){
 	}
 	return quickSort( left ).concat( pivot, quickSort( right ));
 }
-// quickSort(arr)
-console.log(quickSort(arr), 'quickSort')
+quickSort(arr)
+// console.log(quickSort(arr), 'quickSort')
 console.time('quickSort')
 console.timeEnd('quickSort')
 
+module.exports = {
+	bubbleSort,
+	selctionSort,
+	insertionSort,
+	shallSort,
+	mergeSort,
+	quickSort
+}
+console.log(module)
