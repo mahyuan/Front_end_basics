@@ -8,16 +8,16 @@
 
 ### 1.2 登录时的参数：
 
-    用法|介绍
-    ---|---
-    -D, --database=name |打开指定数据库
-    --detailmiter=name| 指定分隔符
-    -h, --host=name |服务器
-    -p, --password[=name] |密码
-    -P, --port=# |端口号 （-P 大写的P）
-    --prompt=name |设置提示符
-    -u, --user=name |用户名
-    -V, --version |输出版本信息且退出
+| 用法                   | 介绍            |
+|-----------------------|---------------|
+| -D, --database=name   | 打开指定数据库       |
+| --detailmiter=name    | 指定分隔符         |
+| -h, --host=name       | 服务器           |
+| -p, --password[=name] | 密码            |
+| -P, --port=#          | 端口号 （-P 大写的P） |
+| --prompt=name         | 设置提示符         |
+| -u, --user=name       | 用户名           |
+| -V, --version         | 输出版本信息且退出     |
 
 ### 1.3 退出:
   - exit;
@@ -33,12 +33,12 @@
 
     语法： prompt 提示符
 
-    参数| 含义
-    --|--
-    \D | 完整的日期；
-    \d | 当前数据库
-    \h | 服务器名称
-    \u | 当前用户
+| 参数  | 含义     |
+|-----|--------|
+| \D  | 完整的日期； |
+| \d  | 当前数据库  |
+| \h  | 服务器名称  |
+| \u  | 当前用户   |
 
 ### 1.5 常用命令：
 - 显示当前服务器版本：
@@ -305,8 +305,3 @@ alter table tbl_name add [constraint [symbol]] foreign key [index_name] (index_c
 ```sql
 update tbl_name set col_name=value where expr;
 ```
-
-
-
-
-

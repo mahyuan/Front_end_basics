@@ -16,22 +16,38 @@
 - 手机号注册
 - 第三方账户注册
 
-![三种登录方式比较](https://upload-images.jianshu.io/upload_images/1552658-ccf01dc360965fd7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+**三种登录方式比较**
+
+<img height="300"  src="https://upload-images.jianshu.io/upload_images/1552658-ccf01dc360965fd7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700"/>
+
 **邮箱注册逻辑：**
+
 ①.不验证邮箱地址
+
 录入邮箱地址 ---> 注册成功
+
 ②.注册成功后点击链接验证
+
 录入邮箱地址 ---> 发送验证链接到邮箱 ---> 注册成功 ---> 点击验证链接验证
+
 ③.注册成功后输入验证码验证
+
 录入邮箱地址 ---> 发送验证码到邮箱 ---> 注册成功 ---> 输入验证码
+
 ④.输入验证码验证成功后注册成功
+
 录入邮箱地址 ---> 发送验证码到邮箱 ---> 输入验证码 --->注册成功
+
 ⑤.点击验证链接后注册成功
+
 录入邮箱地址 ---> 发送验证码到邮箱 ---> 等待验证 ---> 注册成功
 
-![邮箱注册逻辑](https://upload-images.jianshu.io/upload_images/1552658-2bae1ec5c4dd7540.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+**邮箱注册逻辑**
+
+<img src="https://upload-images.jianshu.io/upload_images/1552658-2bae1ec5c4dd7540.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" />
 
 **手机号注册**
+
 手机号注册时目前最主流的注册方式，方便、体验号、使用广泛、可以获取手机号便于一些业务展开
 
 逻辑：
@@ -49,6 +65,7 @@
 无法获得有价值的注册信息
 
 注册逻辑：
+
 选择第三方平台 --> 第三方平台授权页面 --> 完成登录
 
 
@@ -81,23 +98,5 @@
 
 [参考1](https://www.jianshu.com/p/3703ec3e93ff)
 [参考2](https://www.jianshu.com/p/9c92aa5b262b)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
