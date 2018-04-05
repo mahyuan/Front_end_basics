@@ -18,9 +18,12 @@
   "homepage": "https://github.com/mhy-web/Algorithm_demo#readme",
   "dependencies": {
     "bluebird": "^3.5.1",
+    "cheerio": "^1.0.0-rc.2",
     "dialog-polyfill": "^0.4.9",
+    "jQuery": "^1.7.4",
     "mysql": "^2.15.0",
-    "parcel-bundler": "^1.5.1"
+    "parcel-bundler": "^1.5.1",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "lodash": "^4.17.5"
