@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Document
+        link(rel="stylesheet" href="./style.css")
+    body
+        script.
+            if (window.localStorage) {
+                var cont = document.getElementById('cont')
+                var storage = window.localStorage
+                console.log(storage.length)
+                storage.setItem('name', 'mhy')
+                var len = storage.length
+                var key = storage.name
+            }
+        #cont
+            li
+                span.name length: #{len}
+            li
+                lable.name
+                input(type='text', placeholder='Input your Phone Number')
+            li
+                span.name show: #{key}
+            li
+                span.name hello
+                span  world 
+            li
+                span.name hello
+                span  world
+
+
+            

@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><title>Document</title><link rel="stylesheet" href="./style.css"/></head><body><script>if (window.localStorage) {
+    var cont = document.getElementById('cont')
+    var storage = window.localStorage
+    console.log(storage.length)
+    storage.setItem('name', 'mhy')
+    var len = storage.length
+    var key = storage.name
+}</script><div id="cont"><li><span class="name">length: </span></li><li><lable class="name"></lable><input type="text" placeholder="Input your Phone Number"/></li><li><span class="name">show: </span></li><li><span class="name">hello</span><span> world </span></li><li><span class="name">hello</span><span> world</span></li></div></body></html>

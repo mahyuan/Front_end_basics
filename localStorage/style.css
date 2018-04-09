@@ -1,0 +1,10 @@
+li{
+    display: block;
+    width: 100%;
+    margin: 5px;
+    list-style: none;
+}
+.name{
+    color: #000;
+    font-weight: bold;
+}
