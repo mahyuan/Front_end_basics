@@ -1,5 +1,7 @@
 # webpack
+
 [webpack](https://webpack.js.org)
+
 ## entry
 ```js
 module.exports = {
@@ -18,6 +20,7 @@ module.exports = {
     }
 }
 ```
+
 ## output 
 ```js
 module.exports = {
@@ -35,9 +38,6 @@ module.exports = {
     output: {
         filename: '[name].min.[hash:5].js'  // 自定义规则
     },
-    loaders: {
-
-    }
 }
 ```
 
@@ -96,6 +96,7 @@ module.exports = {
     ]
 }
 ```
+
 ## 名词
 - Chunk: 代码块
 - Bundle: 打包，一束一捆
