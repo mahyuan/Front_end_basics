@@ -1,5 +1,7 @@
 ## vuex
-vuex是为Vue应用开发的**状态管理模式**。
+
+> vuex是为Vue应用开发的**状态管理模式**。
+它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。
 
 这个状态自管理应用包含以下几个部分：
 
@@ -200,7 +202,7 @@ mutations: {
 store.commit('increment', 10)
 ```
 多数情况下为一个对象：
-```
+```js
 mutations: {
   increment (state, payload) {
     state.count += payload.amount
@@ -225,11 +227,66 @@ store.commit({
 })
 ```
 
+#### Mutation 需遵守 Vue 的响应规则
+Vuex 的 store 中的状态是响应式的，所以当我们变更状态时，监视状态的Vue组件也会自动更新。 意味着 Vuex 中的 mutation 也需要与使用 Vue 一样遵守一些注意事项：
+* 最好提前在 store 中 初始化所有需要的属性
+* 当需要在对象上添加新属性时：
+  * 使用 Vue.set(obj, 'newProp', 123) 或者
+  * 以新对象替换旧对象。例如，使用 stage-3 的 对象展开运算符：
+```js
+state.obj = { ...state.obj, newProp: 123 }
+```
+#### 使用常量替代 Mutation 事件类型
+使用常量替代 mutation 事件类型在各种 Flux 实现中是很常见的模式。这样可以使 linter 之类的工具发挥作用，同时把这些常量放在单独的文件中可以让你的代码合作者对整个 app 包含的 mutation 一目了然：
+```js
+// mutation-types.js
+export const SOME_MUTATION = 'SOME_MUTATION'
+
+// store.js
+import Vuex from 'vuex'
+import { SOME_MUTATION } from 'mutation-types'
+
+const store = new Vuex.store({
+  state: {...},
+  mutation: {
+    // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
+    [SOME_MUTATION] (state) {
+      // mutate state
+    }
+  }
+})
+```
+使用常量对于多人协作的大型项目很有帮助， 但不是必需的。
+
+#### Mutation 必须是同步函数
+**mutation必须是同步函数**
+
+#### 在组件中提交 mutation 
+在组件中使用 `this.$store.commit('xxx')` 提交 mutation ，或者使用 `mapMutation` 辅助函数将组件中的 methods 映射为 `store.commit` 调用（需要在根节点注入 `store`）。
+```js
+import { mapMutations } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapMutations ([
+      'increment', // 将`this.increment()` 映射为`this.$store.commit('increment')`
+
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+    ]),
+    ...mapMutations([
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+    ])
+  }
+}
+```
+mutation都是同步事物，处理异步事物需要使用action.
+
 ### action
 Action 类似于 mutation，不同在于：
+* Action 提交的是 mutation，而不是直接变更状态。
+* Action 可以包含任意异步操作。
 
-Action 提交的是 mutation，而不是直接变更状态。
-Action 可以包含任意异步操作。
 让我们来注册一个简单的 action：
 ```js
 const store = new Vuex.Store({
@@ -250,9 +307,119 @@ const store = new Vuex.Store({
 ```
 #### 分发 Action
 Action 通过 store.dispatch 方法触发：
-
+```js
 store.dispatch('increment')
+```
 
+可以在 action 内部进行异步操作：
+```js
+action: {
+  incrementAsync({commit}){
+    setTimeout(() => {
+      commit('increment')
+    }, 1000)
+  }
+}
+```
+Actions 支持同样的载荷方式和对象方式进行分发：
+```js
+store.dispatch('incrementAsync', {
+  amount: 10
+})
+
+store.dispatch({
+  type: 'incrementAsync',
+  amount: 10
+})
+```
+来看一个官方文档上更加实际的购物车示例，涉及到调用异步 API 和分发多重 mutation：
+```js
+actions: {
+  checkout ({ commit, state }, products) {
+    // 把当前购物车的物品备份起来
+    const savedCartItems = [...state.cart.added]
+    // 发出结账请求，然后乐观地清空购物车
+    commit(types.CHECKOUT_REQUEST)
+    // 购物 API 接受一个成功回调和一个失败回调
+    shop.buyProducts(
+      products,
+      // 成功操作
+      () => commit(types.CHECKOUT_SUCCESS),
+      // 失败操作
+      () => commit(types.CHECKOUT_FAILURE, savedCartItems)
+    )
+  }
+}
+```
+再来一个：
+```js
+// action.js
+import axios from 'axios'
+let url = '...'
+
+async function loadmore(state) {
+  let details = state.details
+  let resp = await axios.get(url)
+  return resp.data
+}
+
+export default {
+  async moreDetails({commit, state}) {
+    commit('loadmore', await loadmore(state))
+  },
+  changeAddress({commit, address}) {
+    commit('CHANGEADDRESS', address)
+  },
+  async resetAddress({commit}) {
+    let addresses = []
+    try{
+      let resp = await axios.get(`...`)
+      addresses = resp.data
+    } catch(e) {
+      console.log(e)
+    }
+
+    commit('CHANGEADDRESS', addresses)
+  }
+}
+```
+#### 在组件中分发 Action
+在组件中分发action有两种方式：
+* 使用 `this.$store.dispatch('xxx')`
+* 使用 `mapActions` 辅助函数将组件的 `methods` 映射为 `store.dispatch`来调用（需要在根节点注入store）
+来个官网的例子：
+```js
+import { mapActions } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapActions([
+      'increment', // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+
+      // `mapActions` 也支持载荷：
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+    ]),
+    ...mapActions({
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
+    })
+  }
+}
+```
+#### 组合使用 Action
+store.dispatch 可以处理被触发的 action 的处理函数返回的 Promise，并且 store.dispatch 仍旧返回 Promise。
+```js
+// 假设 getData() 和 getOtherData() 返回的是 Promise
+actions: {
+  async actionA ({ commit }) {
+    commit('gotData', await getData())
+  },
+  async actionB ({ dispatch, commit }) {
+    await dispatch('actionA') // 等待 actionA 完成
+    commit('gotOtherData', await getOtherData())
+  }
+}
+```
 
 ### module
 由于使用单一状态树，应用的所有状态会集中到一个比较大的对象。当应用变得非常复杂时，store 对象就有可能变得相当臃肿。
@@ -283,6 +450,6 @@ store.state.a // -> moduleA 的状态
 store.state.b // -> moduleB 的状态
 ```
 
-
+[Vuex官方API文档](https://vuex.vuejs.org/zh-cn/api.html)
 
 
