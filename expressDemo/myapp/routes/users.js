@@ -4,13 +4,21 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 	let str = 'respond with a resource'
-	let goods = {
-		title: '雅诗兰黛面膜',
-		image: 'https://wicdn.xiaohongchun.com/goodsmark/goodsmark_15256_1526785205532.jpg-big2x.jpg',
-		desc: '雅诗兰黛面膜10张， 用了都说好'
+	let user = {
+		name: '面瘫少女王小月',
+		icon: 'https://wicdn.xiaohongchun.com/cover/F912E4E4ED35051A.jpg-avatars3x.jpg',
+		time: Date.now()
 	}
-
-  	res.send(goods);
+	
+  	// res.send(user);
+  	// res.send(JSON.stringify(user));
+  	// res.json(user)
+  	// res.redirect('/users')
+  	// res.end()
+  	res.render('users', {
+  		title: 'this user page!',
+  		user: JSON.stringify(user)
+  	})
 });
 
 module.exports = router;

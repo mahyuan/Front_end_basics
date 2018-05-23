@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	div.content
+		p @ #{title}
+		button(onclick="btnClick()") click
+
+	script.
+		async function btnClick() {
+			console.log('msg')
+
+		}

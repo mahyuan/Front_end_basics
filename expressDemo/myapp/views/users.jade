@@ -2,4 +2,10 @@ extends layout
 
 block content
 	h1= title
-	.container hellow my friend ${title}
+	.content
+		span(style="color: blue") hello my friend, 
+		span(style="color:red") #{title}
+	div
+		p.name user-name: #{JSON.parse(user).name}
+		img.icon(src=`${JSON.parse(user).icon}` width="100")
+		p.time #{JSON.parse(user).time}
