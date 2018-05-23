@@ -5,17 +5,17 @@
 ## entry
 ```js
 module.exports = {
-    entry: 'index.js
+    entry: 'index.js'
 
 }
 
 module.exports = {
-    entry: ['index.js, 'vender.js']
+    entry: ['index.js', 'vender.js']
 }
 
 module.exports = {
     entry: {
-        index: 'index.js,
+        index: 'index.js',
         vender: 'vender.js'
     }
 }
@@ -32,7 +32,7 @@ module.exports = {
 
 module.exports = {
     entry: {
-        index: 'index.js,
+        index: 'index.js',
         vender: 'vender.js'
     },
     output: {
@@ -55,7 +55,7 @@ module.exports = {
         reles: [
             {
                 test: /\.css$/,
-                use: 'css-loader'
+                loader: 'css-loader'
             },{
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -101,4 +101,12 @@ module.exports = {
 - Chunk: 代码块
 - Bundle: 打包，一束一捆
 - Module: 模块
+
+## 打包 JS
+```sh
+webpack entry<enter> output
+# 或者
+webpack --config webpack.config.js
+```
+
 

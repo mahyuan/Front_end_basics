@@ -1,3 +1,21 @@
+const express = require('express')
+const app = express()
+
+app.get('/', (req, res) => res.send('hello'))
+
+app.listen(2000, () => console.log('Listen port 2000'))
+
+
+
+
+
+
+
+
+
+
+
+/*
 var express = require('express');
 var http = require('http');
 
@@ -10,3 +28,4 @@ app.get('/', function(req, res) {
 });
 
 app.listen(3001);
+*/

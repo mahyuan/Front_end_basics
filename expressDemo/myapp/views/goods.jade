@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	//- div #{goods}
+	div 
+		h3 #{JSON.parse(goods).title}
+		p #{JSON.parse(goods).desc}
+		img(src=`${JSON.parse(goods).image}` width="100")
