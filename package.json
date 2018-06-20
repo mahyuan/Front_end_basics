@@ -27,6 +27,7 @@
     "vue": "^2.5.16"
   },
   "devDependencies": {
+    "eslint-plugin-vue": "^4.5.0",
     "lodash": "^4.17.5"
   }
 }
