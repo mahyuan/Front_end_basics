@@ -1,12 +1,121 @@
+<style>
+	@media (min-width: 600px ){
+		html{
+			background: #fff;
+		}
+		body{
+			width: 600px;
+			margin: 0 auto;
+			background-color: #eee;
+			box-sizing: border-box;
+			min-height: 100vh; 
+		}
+	}
+	#app{
+		width: 100%;
+		padding: 5px;
+		height: 100%;
+	}
+	ul,li{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+	}
+	button{
+		display: inline-block;
+		width: 100px;
+		height: 30px;
+		background: #00B7FF;
+		border-radius: 2px;
+	}
+	.insertbtn{
+
+	}
+	.insertContent{
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+		width: 100%;
+
+		margin-top: 10px;
+	}
+	.insertContent span{
+		display: inline-block;
+		margin: 2px 5px;
+		background: #aaa;
+	}
+	#listwrap{
+		display: block;
+		padding: 10px;
+	}
+	.listcontent{
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: flex-start;
+		align-content: flex-start;
+	}
+	.item {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		height: 30px;
+		background: #83d1c6;
+		font-size: 14px;
+		color: #333;
+		margin: 5px;
+	}
+	.index{
+
+	}
+	.item span{
+		display: inline-block;
+		margin-top: 5px;
+		margin-right: 5px;
+	}
+	.item button{
+		display: block;
+		width: 50px;
+		height: 20px;
+		font-size: 14px;
+		line-height: 18px;
+		border-radius: 3px;
+		color: #333;
+		vertical-align: middle;
+	}
+</style>
+
 <template>
 	<div id="app">
 		<h3>{{msg}}</h3>
-		<button @click="insertData">insert</button>
+		<button @click="insertData" class="insertbtn">insert</button>
 		<button @click="searchData">search</button>
 		<button @click="randomSearch">randomSearch</button>
 		<button @click="editDate(10, false)">editDate</button>
-		<button @click="deleteData(10)">deleteData</button>
-
+		<div class="insertContent">
+			<span class="id">
+				<label for="id">输入ID</label>
+				<input type="number" name="id" v-model="inertId">
+			</span>
+			
+			<span class="task">
+				<label for="task">输入Task</label>
+				<input type="text" name="task" v-model="tasakName">
+			</span>
+		</div>
+		<div id="listwrap">
+			<ul class="listcontent">
+				<li class="item" v-show="result.length" v-for="(item, index) in result">
+					<span class="index">{{ result.length - index}}</span>
+					<span class="task">{{item.taslTitle}}</span>
+					<span class="createtime">{{item.createTime}}</span>
+					<span class="modifyOrFinishedtime">{{item.isFinished ?  item.finishedTime : item.modifiTime}}</span>
+					<span class="finishedcont"><button class="finishbtn">完成</button></span>
+					<span class="delete"><button class="deletebtn">删除</button></span>
+				</li>
+			</ul>
+		</div>
 	</div>
 </template>
 
@@ -30,9 +139,12 @@
 				dbName:  'myDatabase',
 				tableName:  'myTable',
 				version: 1,
+				inertId:null,
+				tasakName: '',
 			}
 		},
 		methods: {
+			// 初始化数据库
 			init: function() {
 				if (!this.indexedDB) {
 					window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.")
@@ -74,6 +186,7 @@
 				}
 
 			},
+			// 插入记录
 			insertData: function() {
 				let transaction = this.DB.transaction([this.dbName], "readwrite");
 				// 打开已经存储的数据对象
@@ -90,6 +203,7 @@
 					}.bind(this);
 				}
 			},
+			// 编辑记录
 			editDate: function(id, newData) {
 				//let id = 20;
 				let transaction = this.DB.transaction(this.dbName, "readwrite")
@@ -110,13 +224,36 @@
 					// 更新数据库存储数据
 					objectStore.put(record);
 				}.bind(this);
+
 				objectStoreRequest.onerror = function (event) {
 					this.msg = 'get objectStoreRequest failed'
 				}
 			},
+			// 根据ID删除记录
 			deleteData: function(id) {
-				let objectStore = this.DB.transaction(this.dbName, "readwrite").objectStore(this.dbName).delete(id);
+				// let objectStore = this.DB.transaction(this.dbName, "readwrite").objectStore(this.dbName).delete(id);
+				let transaction = this.DB.transaction(this.dbName, "readwrite");
+				let objectStore = transaction.objectStore(this.dbName);
+				let removeKey = parseInt(id);
+				let getRequest = objectStore.get(removeKey);
+
+				getRequest.onsucess = function(event) {
+					var result = getReqest.result;
+					this.msg = `get record to delete of \"${result}\" successfull!`
+				};
+
+				let request = objectStore.delete(removeKey);
+				request.onsucess = function(event) {
+					this.msg = `delete record of \" ${result}}\" successfull!`;
+					// console.log(this.msg);
+				};
+
+				request.onerror = function(evt) {
+					this.msg = `delete record of \" ${result}}\" failed!`
+					console.log(evt);
+				}
 			},
+			// 查询所有数据
 			searchData: function() {
 				let objectStore = this.DB.transaction(this.dbName).objectStore(this.dbName);
 
@@ -158,7 +295,7 @@
 			randomSearch: function() {
 				let ids = this.randomIds();
 				// 确定打开的游标的主键范围
-				let  keyRangeValue = IDBKeyRange.bound(ids[0], ids[1]);
+				let  keyRangeValue = this.IDBKeyRange.bound(ids[0], ids[1]);
 				// 打开对应范围的游标
 				let  objectStore = this.DB.transaction(this.dbName).objectStore(this.dbName);
 
@@ -179,7 +316,32 @@
 					}
 				}.bind(this);
 			},
+			// 根据索引查询某个记录
+			searchReacrd: function(curName) {
 
+				let objectStore = this.DB.transaction(this.dbName).objectStore(this.dbName);
+				let boundKeyRange = this.IDBKeyRange.only(curName); //  生成一个表示范围的Range对象
+				objectStore.index('taskTitle').openCursor(boundKeyRange).onsuccess = function(evt) {
+					let cursor = evt.target.result;
+					if(cursor) {
+						let rowData = cursor.value;
+						cursor.continue();
+					}
+
+				}
+			},
+			//  删除数据库
+			deleteDatabase: function(dbName) {
+				let deleteDB = this.indexedDB.deleteDatabase(dbName);
+				
+				deleteDB.onsuccess = function(evt) {
+					this.msg = `delete Database \"${dbName}\" successfull!`
+				};
+
+				deleteDB.onerror = function(evt) {
+					this.msg = `delete Database \"${dbName}\" failed!`
+				};
+			},
 		},
 		beforeMount() {
 			console.log("init start");
@@ -194,13 +356,3 @@
 		}
 	}
 </script>
-
-<style>
-	button{
-		display: inline-block;
-		width: 100px;
-		height: 30px;
-		background: #00B7FF;
-		border-radius: 2px;
-	}
-</style>
