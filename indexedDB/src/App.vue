@@ -5,6 +5,7 @@
 		<button @click="searchData">search</button>
 		<button @click="randomSearch">randomSearch</button>
 		<button @click="editDate(10, false)">editDate</button>
+		<button @click="deleteData(10)">deleteData</button>
 
 	</div>
 </template>
@@ -28,8 +29,6 @@
 				IDBKeyRange:  window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRang,
 				dbName:  'myDatabase',
 				tableName:  'myTable',
-				arrayKey: [],
-				lastCursor: '',
 				version: 1,
 			}
 		},
@@ -198,6 +197,7 @@
 
 <style>
 	button{
+		display: inline-block;
 		width: 100px;
 		height: 30px;
 		background: #00B7FF;
