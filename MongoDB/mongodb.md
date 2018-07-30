@@ -189,3 +189,50 @@ writeConcern :（可选）抛出异常的级别。
 db.collecation.remove({})
 ```
 
+新方法
+现在官方推荐使用`deleteOne()` 和 `deleteMany()`方法
+删除集合下全部文档
+```
+db.inventory.deleteMany({})
+```
+删除status="A"的全部文档
+```
+db.inventory.deleteMany({ status: "A" })
+```
+删除status="D"的一个文档
+```
+db.inventory.deleteOne({status: "D"})
+```
+
+查询文档
+查询文档使用`find()`方法
+```
+db.collection.find(query, projection)
+```
+参数说明：
+query： 可选参数， 查询他条件
+projection： 可选，使用投影操作符指定返回的键。查询时返回文档中所有键值，只需省略该参数即可（默认省略）。
+如果你需要以易读的方式来读取数据，可以使用`pretty()` 方法，语法格式如下：
+```
+db.col.find().pretty()
+```
+`pretty()`方法以格式化的方式来显示所有文档。
+```
+ db.col.find().pretty()
+ {
+        "_id" : ObjectId("56063f17ade2f21f36b03133"),
+        "title" : "MongoDB 教程",
+        "description" : "MongoDB 是一个 Nosql 数据库",
+        "by" : "菜鸟教程",
+        "url" : "http://www.runoob.com",
+        "tags" : [
+                "mongodb",
+                "database",
+                "NoSQL"
+        ],
+        "likes" : 100
+}
+```
+除了 find() 方法之外，还有一个 findOne() 方法，它只返回一个文档。
+
+
