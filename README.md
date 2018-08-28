@@ -1,9 +1,8 @@
-# Algorithm_demo
-学习demo
-- 算法学习 
-- node.js 
-- http 
-- ajax 
+# Front_end_basics
+- algorithm
+- node.js
+- http
+- ajax
 - ES6
 - async/await
 - promise
@@ -14,4 +13,10 @@
 - express
 - commonJS
 - mysql
-
+- mongodb
+- shell
+- class
+- cors
+- indexDB
+- koa
+- ssh

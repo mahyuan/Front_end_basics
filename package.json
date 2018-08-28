@@ -1,5 +1,5 @@
 {
-  "name": "algorithm_demo",
+  "name": "Front_end_basics",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mhy-web/Algorithm_demo.git"
+    "url": "git+https://github.com/mhy-web/Front_end_basics.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mhy-web/Algorithm_demo/issues"
+    "url": "https://github.com/mhy-web/Front_end_basics/issues"
   },
-  "homepage": "https://github.com/mhy-web/Algorithm_demo#readme",
+  "homepage": "https://github.com/mhy-web/Front_end_basics#readme",
   "dependencies": {
     "bluebird": "^3.5.1",
     "cheerio": "^1.0.0-rc.2",
