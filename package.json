@@ -21,6 +21,8 @@
     "cheerio": "^1.0.0-rc.2",
     "dialog-polyfill": "^0.4.9",
     "jQuery": "^1.7.4",
+    "koa": "^2.5.3",
+    "koa-router": "^7.4.0",
     "mysql": "^2.15.0",
     "parcel-bundler": "^1.5.1",
     "request-promise": "^4.2.2",
