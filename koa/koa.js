@@ -29,6 +29,7 @@ const main = ctx => {
         ctx.response.type = 'html';
         ctx.response.body = fs.createReadStream('./tmpl.html');
     } else {
+        ctx.status = 200;
         ctx.response.body = 'hello world!!!';
     }
 
