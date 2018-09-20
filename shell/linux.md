@@ -13,6 +13,7 @@ eg:
 -rw-r--r--   1 root  wheel   515B  7 13  2015 afpovertcp.cfg
 权限				1引用计数	所属root 所属组root 文件大小 最后修改时间  文件名
 ```
+
 ### chmod
 ```
 chmod 777 shell.sh # 统一授权方式，使用三位数字代表权限，每一位代表一个组，三个组都授权为7（rwx）
@@ -106,6 +107,7 @@ ln -s [原文件]] [目标文件]
 	不能跨分区
 	不能针对目录使用
 	删除一个，另一个还在（通过i节点识别）
+
 ### 软链接：
 	类似windows的快捷方式
 	软链接有自己的i节点和block块，数据只保存在原文件的文件名和i节点，并没有实际的文件数据
@@ -218,4 +220,158 @@ echo this is a test line. | grep -o -E "[a-z]+\."
 ### grep 和 find 区别
 find 在系统中搜索文件名，通配符匹配， 通配符是*完全匹配*
 grep 在文件中搜索字符串，可以使用正则匹配，正则是*包含匹配*
+
+## 帮助命令
+### man
+ man 命令
+- 查看有哪些级别:
+man -f 命令  == whatis 命令
+- 查看指定级别:
+man -5 passwd
+man -4 null
+man -8 ifconfig
+- 查看所有含有命令关键词的信息:
+man -k 命令
+
+### 其他帮助命令
+- 选项帮助: --help
+命令帮助选项
+- shell内部命令： help
+获取shell内部的帮助，shell有自带的一些命令，比如cd,help
+可以通过whereis cd 确定是否是shell内部命令，看可执行文件
+help cd #command not found: help
+- info
+
+## 压缩命令
+- 常营压缩格式：
+.zip  .gz  .bz2
+.tar.gz  .tar.bz2
+**linux文件不区分后缀名，但是压缩文件为了区分文件类型和压缩类型，必须要在后缀中写清楚格式**
+按压缩格式来记命令
+
+### zip
+- 压缩文件：
+zip 压缩文件名  源文件
+- 压缩目录“
+zip -r 压缩文件名  源目录
+- 解压缩：
+unzip 压缩文件
+
+### gzip
+- 压缩为.gz格式文件，源文件会消失：
+gzip 源文件
+- 压缩为.gz格式，源文件保留：
+gzip -c 源文件 > 压缩文件
+eg： gzip -c a.js > a.js.gz
+实际上是把源文件输出到新的文件
+- 压缩目录
+压缩目录实际上是把目录内的文件全部压缩
+gzip -r 目录
+压缩目录下所有子文件，但是不能压缩目录
+- 解压缩文件
+gzip -d 压缩文件
+gunzip 压缩文件
+- 解压缩目录
+gunzip -r 压缩目录
+
+### .bz2 （不能压缩目录）
+压缩文件：
+bzip2 文件名
+bzip2 -k 文件名
+解压缩文件：
+-k 保留压缩文件
+bzip2 -d 压缩文件
+bunzip2 压缩文件
+**上面三个压缩命令只有zip可以压缩没有了， gzip压缩目录实际上是压缩了目录内的文件，bz2直接回报错，可以用tar命令打包，然后再压缩**
+
+### 打包命令 tar
+- 打包命令：
+tar -cvf 打包文件名 源文件
+选项：
+ -c 打包
+ -v 显示过程
+ -f 指定打包后的文件名
+eg: tar -cvf longzls.tar longzls
+- 解打包命令：
+tar -xvf 打包文件名
+选项：
+	-x: 解打包
+eg: tar -xvf longzls.tar
+
+### .tar.gz
+.tar.gz格式是先打包为.tar格式，然后压缩为.gz格式
+tar -zcvf 压缩包名.tar.gz 源文件
+选项：
+	-z 压缩为.tar.gz格式
+tar -zxvf 压缩包名.tar.gz
+选项：
+ -x 解压缩.tar.gz格式
+### .tar.bz2
+tar -jcvf 压缩包名.tar.bz2 源文件
+选项：
+ -z 压缩为.tar.bz2格式
+tar -jxvf 压缩包名.tar,bz2
+选项：
+ -x 解压缩.tar.bz2格式
+指定解压缩位置：
+tar -jxvf 压缩包名.gz.bz2  -C 解压缩位置
+注意： 选项大写C必须写到压缩包名后面
+
+压缩多个文件：
+压缩文件名用空格连接
+
+查看包里面内容不解压：
+选项：
+ -t
+**Linux最常用的压缩格式是.tar.gz和.tar.bz2**
+
+## Linux的关机和重启命令
+- shutdown [选项] 时间
+选项：
+ -c 取消前一个挂机命令
+ -h 关机
+ -r 重启
+时间：
+	now 立即执行
+eg:
+	shutdown -h 2:33 # 2:32 关机
+	shutdown -r now
+shutdown 命令可以正确保持关机前的文件，比较安全
+**以下命令关机不安全**
+- halt
+- poweroff
+- init 0
+重启：
+- reboot
+- init 6
+reboot 是比较安全的重启方式
+退出登录：
+- logout
+
+## 挂载命令
+查询系统中挂载的点：
+mount
+依据/etc/fstab文件自动挂载：
+mount -a
+
+挂载命令格式：
+mount [-t 文件系统] [-o 特殊选项] 设备文件名 挂载点
+选项：
+ -t 文件系统：eg:ext3,ext4, ios9660....
+ -o 特殊选项：可以指定挂载的额外选项
+挂载光盘(先要插入光盘或者虚拟机导入iso镜像):
+1.建立挂载点：
+mkdir /mnt/cdrom/
+2.挂载光盘
+mount -t iso9660 /dev/cdrom/ /mnt/cdrom/
+3.简写（默认的文件系统）
+mount /dev/sr0 /mnt/cdrom
+4.卸载命令：
+umount 设备名或挂载点
+umount /mnt/cdrom
+5.挂载U盘:
+fdisk -l # 查看U盘设备文件名
+mount -t vfat /dev/sdb1 /mnt/ust/
+
+
 
