@@ -36,7 +36,19 @@ ls 命令的选项详解
 -h  人性化显示文件大小
 -i 显示inode
 
-### chmon
+### chown
+改变文件所有者
+chown [选项] 参数
+选项：
+-R 或 --recursive 递归处理
+--reference=<参考文件或目录>   把指定文件或目录的拥有者与所属群组全部设成和参考文件或目录拥有者与所属群组相同
+
+参数：
+用户：组   指定所有者和所属组， 当省略组，仅改变所有者
+文件      文件列表，可使用shell通配符改变多个
+
+chown -R mhy /home/mhy/*
+
 ## 文件处理命令
 mkdir -p [目录名]
 -p 递归创建（先建立上一级目录）
@@ -187,7 +199,21 @@ ls -i 文件名
 在指定文件中搜索字符串
 grep [选项] 字符串 文件名
 -i 忽略大小写
--v 排除指定字符串
+-v 排除指定字符串， 取反搜索
+eg:
+grep "size" file_name
+grep "size" file1 file2 file3  #多文件搜索
+
+标记匹配颜色 --color=auto 选项：
+grep "size" file_name --color=auto
+
+使用正则表达式 -E 选项：
+grep -E "[1-9]+"
+或
+egrep "[1-9]+"
+
+只输出文件中匹配到的部分 -o 选项：
+echo this is a test line. | grep -o -E "[a-z]+\."
 
 ### grep 和 find 区别
 find 在系统中搜索文件名，通配符匹配， 通配符是*完全匹配*
