@@ -6,4 +6,3 @@ else
     rm -rf "d1"
     echo "else ..."
 fi
-
