@@ -373,3 +373,13 @@ umount /mnt/cdrom
 fdisk -l # 查看U盘设备文件名
 mount -t vfat /dev/sdb1 /mnt/ust/
 
+## 远程登录y用户信息查看
+- w
+`w` 命令查看系统远程登录用户信息，包括系统资源
+- who
+`who` 命令查看系统远程登录用户信息，功能和w命令类似，不过没有系统资源信息
+- last
+last命令默认是读取`/var/log/wtmp`文件的数据。
+命令输出： 用户名  登录终端 登录ip 登录时间 退出时间(在线时间)
+- lastlog
+查询所有用户的最后一次登录
