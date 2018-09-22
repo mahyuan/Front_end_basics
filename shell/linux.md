@@ -309,7 +309,7 @@ tar -zxvf 压缩包名.tar.gz
 ### .tar.bz2
 tar -jcvf 压缩包名.tar.bz2 源文件
 选项：
- -z 压缩为.tar.bz2格式
+ -j 压缩为.tar.bz2格式
 tar -jxvf 压缩包名.tar,bz2
 选项：
  -x 解压缩.tar.bz2格式
