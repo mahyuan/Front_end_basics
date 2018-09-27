@@ -31,7 +31,7 @@ fetch(url){
 		videos: [
 			id: '',
 			title: ''
-		]	
+		]
 	}]
 	chapter
 }*/
@@ -54,6 +54,6 @@ Promise
 			var courses = filterChapters(html)
 
 			coursesData.push(courses)
-		})	
+		})
 
 	})
