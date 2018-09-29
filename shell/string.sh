@@ -56,6 +56,11 @@ echo ${your_name}
 # \W：当前目录的最后一个目录
 # $: 提示符，root：#，普通用户: $
 
+# 可以在语句中给变量赋值，以下语句把该文件夹下的文件名循环出来
+# for file in `ls -la ./`; do
+# 	echo "${file}"
+# done
+
 for skill in Ada Aoffe Action Jave; do
     echo "I am good at ${skill}Script"
 done
@@ -99,6 +104,7 @@ greeting="hello, "$your_name" !"
 greeting_1="hello, ${your_name} !"
 echo $greeting $greeting_1
 
+# 变量类型有三种： 局部变量（在脚本或命令中定义，仅当前shell实例中有效）， 环境变量（所有程序都能访问的变量）， shell变量（shell程序设置的特殊变量，一部分是局部变量，一部分是环境变量）
 
 # shell字符串
 # 单引号字符串：里面的任何字符都原样输出，单引号字符串中的变量是无效的，不能出现一个单独的单引号（转义也不行），但可成对出现，作为拼接使用
@@ -126,6 +132,15 @@ echo "get substring to end: ${string1:3}"
 # 注意：${test##*/},${test%/*} 分别是得到文件名，或者目录地址最简单方法。
 delstring=""
 echo "delete substring by #: "
+
+
+# 获取字符串长度： ${#string} 读取字符串的时候在{}里面加#
+# ${#变量名}
+echo "string1's length: ${#string1}"
+
+# 截取子字符串： ${string:1:4} 从第二个祖父开始截取4个字符
+# ${变量名:起始:长度}
+echo "get substring: ${string1:2:5}"
 
 # 查找子字符串：eg:查找字符i或o出现的位置（先出现哪个算哪个）, 使用反引号``
 string="the weather is nice!"
