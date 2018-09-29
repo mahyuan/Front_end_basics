@@ -10,11 +10,15 @@ rw-  r-- r--
 u 所有者  g所属组  o其他人
 r read  w write x 执行(excute)
 eg:
--rw-r--r--   1 root  wheel   515B  7 13  2015 afpovertcp.cfg
-权限				1引用计数	所属root 所属组root 文件大小 最后修改时间  文件名
+-rw-r--r--   1       root    wheel     515B  7 13  2015     afpovertcp.cfg
+类型 权限		1引用计数	所属root 所属组root 文件大小  最后修改时间       文件名
 ```
 
 ### chmod
+两种设置方法，一种是数字，一种是符号。
+- 数字方式
+r:4; w:2; x:1
+
 ```
 chmod 777 shell.sh # 统一授权方式，使用三位数字代表权限，每一位代表一个组，三个组都授权为7（rwx）
 chmod u+x shell.sh # 给u组增加权限x
@@ -37,27 +41,42 @@ ls 命令的选项详解
 -h  人性化显示文件大小
 -i 显示inode
 
-### chown
-改变文件所有者
+- 符号方式
+> chmod [u|g|o|a] [+|-|=] [r|w|x] 文件或目录
 
-> chown [选项] 参数
-> chown [选项]... [所有者][:[组]] 文件...
+eg:
+```sh
+chmod a-x /root/test
+```
+
+### chown
+改变文件属住和属组
+
+> chown [-R] 参数
+> chown [-R]... [所有者][:[组]] 文件...
 
 eg:
 ```sh
 chown -R mhy:mhy ~/.ssh
 ```
-同时把`.ssh`的所有者和组都改成了mhy
+把`.ssh`的所有者和组都改成了mhy
+
 
 选项：
--R 或 --recursive 递归处理
+-R 或 --recursive 递归处理，该文件夹下所有子目录和文件都一起处理
 --reference=<参考文件或目录>   把指定文件或目录的拥有者与所属群组全部设成和参考文件或目录拥有者与所属群组相同
 
 参数：
 用户：组   指定所有者和所属组， 当省略组，仅改变所有者
 文件      文件列表，可使用shell通配符改变多个
-
+```sh
 chown -R mhy /home/mhy/*
+```
+### chgrp
+更改文件属组
+
+> chmod [-R] 数组名 文件名
+
 
 ## 文件处理命令
 mkdir -p [目录名]
