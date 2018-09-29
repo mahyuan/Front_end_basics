@@ -23,8 +23,8 @@ let obj = {};
 const set = new Set(); //Set {}
 set.add(obj); // Set {{}}
 set.add(obj); // Set {{}}
-set.add({}); // Set {{}, {}}
-set.add({}); // Set {{}, {}, {}}
+//set.add({}); // Set {{}, {}}
+//set.add({}); // Set {{}, {}, {}}
 ```
 ### Set的属性和方法
 #### size属性
@@ -65,7 +65,7 @@ set.has('s'); //true
 set.delete('s'); // true
 set.has('s'); //false
 ```
-#### clear() 
+#### clear()
 clear方法用于清空Set。没有返回值。
 ```js
 const set = new Set([1,2,3,4,5]);
