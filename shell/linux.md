@@ -445,23 +445,21 @@ tar -tvf vim.tar.gz
 > 查　询：tar -jtv -f filename.tar.bz2
 > 解压缩：tar -jxv -f filename.tar.bz2 -C 欲解压缩的目录
 
-
-
-
-
 **Linux最常用的压缩格式是.tar.gz和.tar.bz2**
 
 ## Linux的关机和重启命令
 - shutdown [选项] 时间
 选项：
- -c 取消前一个挂机命令
- -h 关机
- -r 重启
+ - -c 取消前一个挂机命令
+ - -h 关机
+ - -r 重启
 时间：
 	now 立即执行
 eg:
-	shutdown -h 2:33 # 2:32 关机
-	shutdown -r now
+```
+shutdown -h 2:33 # 2:32 关机
+shutdown -r now
+```
 shutdown 命令可以正确保持关机前的文件，比较安全
 **以下命令关机不安全**
 - halt
@@ -476,30 +474,44 @@ reboot 是比较安全的重启方式
 
 ## 挂载命令
 查询系统中挂载的点：
+```
 mount
+```
 依据/etc/fstab文件自动挂载：
+```
 mount -a
-
+```
 挂载命令格式：
+```
 mount [-t 文件系统] [-o 特殊选项] 设备文件名 挂载点
+```
 选项：
- -t 文件系统：eg:ext3,ext4, ios9660....
- -o 特殊选项：可以指定挂载的额外选项
+ - -t 文件系统：eg:ext3,ext4, ios9660....
+ - -o 特殊选项：可以指定挂载的额外选项
 挂载光盘(先要插入光盘或者虚拟机导入iso镜像):
 1.建立挂载点：
+```
 mkdir /mnt/cdrom/
+```
 2.挂载光盘
+```
 mount -t iso9660 /dev/cdrom/ /mnt/cdrom/
+```
 3.简写（默认的文件系统）
+```
 mount /dev/sr0 /mnt/cdrom
+```
 4.卸载命令：
+```
 umount 设备名或挂载点
 umount /mnt/cdrom
+```
 5.挂载U盘:
+```
 fdisk -l # 查看U盘设备文件名
 mount -t vfat /dev/sdb1 /mnt/ust/
-
-## 远程登录y用户信息查看
+```
+## 远程登录用户信息查看
 - w
 `w` 命令查看系统远程登录用户信息，包括系统资源
 - who
