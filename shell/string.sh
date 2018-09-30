@@ -115,14 +115,6 @@ string="hello,${your_name}"
 string1="hello \"$your_name\"!\n"
 echo $string $string1
 
-# 获取字符串长度： ${#string} 读取字符串的时候在{}里面加#
-# ${#变量名}
-echo "string1's length: ${#string1}"
-
-# 截取子字符串： ${string:1:4} 从第二个祖父开始截取4个字符
-# ${变量名:起始:长度}
-echo "get substring by length: ${string1:2:5}"
-echo "get substring to end: ${string1:3}"
 
 # 删除子字符串：
 # 从头开始： ${变量名#字串名}， 一个#表示删除最短匹配， 两个##表示删除最长匹配
@@ -130,9 +122,23 @@ echo "get substring to end: ${string1:3}"
 # ${变量名#substring正则表达式}从字符串开头开始配备substring,删除匹配上的表达式。
 # ${变量名%substring正则表达式}从字符串结尾开始配备substring,删除匹配上的表达式。
 # 注意：${test##*/},${test%/*} 分别是得到文件名，或者目录地址最简单方法。
-delstring=""
-echo "delete substring by #: "
+delstring="hello, world"
+echo "delete substring by #: ${delstring#he}"
+echo "delete substring by %: ${delstring%world}"
 
+# 字符串删除获取路径
+pa="/Users/member/work/index.html"
+echo ${pa##*/}
+# index.html
+echo ${pa%/*}
+# /Users/member/work
+# 获取文件名和目录的最简单的方法：
+# ${str##*/}
+# ${str%/*}
+
+# 获取字符串长度： ${#string} 读取字符串的时候在{}里面加#
+# ${#变量名}
+echo "string1's length: ${#string1}"
 
 # 获取字符串长度： ${#string} 读取字符串的时候在{}里面加#
 # ${#变量名}
@@ -141,9 +147,27 @@ echo "string1's length: ${#string1}"
 # 截取子字符串： ${string:1:4} 从第二个祖父开始截取4个字符
 # ${变量名:起始:长度}
 echo "get substring: ${string1:2:5}"
+echo "get substring to end: ${string1:3}"
+str="abc123"
+#起始位置可以是负数，代表倒数第几位开始向右截取
+echo ${str:(-5):3} #bc1
 
 # 查找子字符串：eg:查找字符i或o出现的位置（先出现哪个算哪个）, 使用反引号``
 string="the weather is nice!"
 echo `expr index $string "r!"`
 
+
+# 匹配替换
+# ${string/substr/replacement}
+# 第一个/后面是匹配项，第二个/后面是替换的字符串
+# 第一个/位置： 两个/表示替换所有，一个/表示替换一个，/#是前缀替换，/%是后缀替换
+
+repstr="/Users/member/work/index.html"
+echo ${repstr/member/mhy} # /Users/mhy/work/index.html
+echo ${repstr//\//@} # @Users@member@work@index.html  #替换所有的/为@
+
+repstr2="abc123abc123abc"
+echo ${repstr2/#abc/ABC} # ABC123abc123abc
+echo ${repstr2/%abc/ABC} # abc123abc123ABC
+echo ${repstr2//abc/ABC} # ABC123ABC123ABC
 
