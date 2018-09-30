@@ -361,63 +361,93 @@ gzip -c a.js > a.js.gz
 **上面三个压缩命令只有zip可以压缩没有了， gzip压缩目录实际上是压缩了目录内的文件，bz2直接回报错，可以用tar命令打包，然后再压缩**
 
 ### 打包命令 tar
-- 打包命令：
-> tar -cvf 打包文件名 源文件
+tar命令可以打包也可以解压缩，功能非常强大，选项很多，可以查看相关[文档](http://man.linuxde.net/tar)，这里总结一下用的比较多的情况。
+> tar 选项 参数
 
 选项：
- - -c 打包
- - -v 显示过程
+ - -c 或 --create: 打包，建立新的备份文件
+ - -C <目录>: 大写C后面跟一个目录，可以解压到指定的目录下
  - -f 指定打包后的文件名
+ - -x 或 --extract 或 --get: 从备份文件中还原文件
+ - -v 或 --verbose: 显示过程
+ - -z 或 --gzip 或 --ungzip: 通过`gzip`指令处理备份文件
+ - -Z 或 --compress 或 --uncompress: 通过`compress`指令处理备份文件
+ - -r: 添加文件到已压缩的文件
+ - -u: 添加改变了和现有的文件到已经存在的压缩文件
+ - -j: 支持bzip2(即bz2格式)解压文件
+ - -k: 保留原有文件不被覆盖
+ - -m: 保留文件不被覆盖
+ - -p: 保留原文件权限
+ - --exclude=<范本样式>: 排除符合范本样式的文件，可以是文件名，也可以加通配符
+ - -N <日期格式> 或 --newer=<日期格式>: 只将较指定日期更新的文件保存在备份文件里
 
-eg:
+还有一些不常用的选项，这里不列举了。
+
+#### 常见使用实例:
+- 打包
+> tar 选项 包名 源文件
+
 ```sh
- tar -cvf longzls.tar longzls
+tar -cvf log.tar log180922.log #仅打包，不压缩
+tar -zcvf log.tar.gz log180922.log #打包后，以gzip压缩
+tar -jcvf log.tar.bz2 log180922.log #打包后，以bzip2压缩
 ```
-- 解打包命令：
-> tar -xvf 打包文件名
-
-选项：
- - -x: 解打包
-
-eg:
+选项 `-f` 需要制定打包后的文件名，如果没有选项，则打包格式为`tar 源文件`， 所以包名必须在源文件名的前面因为选项与它的参数之间不能有其它的对象(可以有其他选项)。这样写就比较清楚了：
 ```sh
-tar -xvf longzls.tar
+tar -f 包名 -cv 源文件名
+```
+打包后的包名可以随便取，但是为了自己或者其他人能识别文件类型最好加上后缀。
+ - .tar: 包
+ - .tar.gz 或 .tar.tgz: gzip压缩包
+ - .tar.bz2: bzip压缩包
+
+- 打包多个文件：
+源文件名用空格连接， 如果要压缩则添加压缩类型选项-z或-j。
+```sh
+tar -cvf totle.tar linux.md shell.md string.sh
+```
+- 备份文件时排除部分文件
+```sh
+tar --exclude scf/service -zcvf scf.tar.gz scf/*
+```
+- 文件备份下来，并且保存其权限：
+```sh
+tar -zcvpf log31.tar.gz log2014.log log2015.log log2016.log
+```
+- 只将tar内的部分文件解压出来：
+```sh
+tar -zxvf /opt/soft/test/log30.tar.gz log2013.log
+```
+- 在文件夹当中，比某个日期新的文件才备份：
+```sh
+tar -N "2012/11/13" -zcvf log17.tar.gz test
 ```
 
-### .tar.gz
-.tar.gz格式是先打包为.tar格式，然后压缩为.gz格式
-> tar -zcvf 压缩包名.tar.gz 源文件
-
-选项：
- - -z 压缩为.tar.gz格式
-> tar -zxvf 压缩包名.tar.gz
-
-选项：
- - -x 解压缩.tar.gz格式
-
-### .tar.bz2
-> tar -jcvf 压缩包名.tar.bz2 源文件
-
-选项：
- - -j 压缩为.tar.bz2格式
-> tar -jxvf 压缩包名.tar,bz2
-
-选项：
- - -x 解压缩.tar.bz2格式
-
-指定解压缩位置：
-> tar -jxvf 压缩包名.gz.bz2  -C 解压缩位置
-
-注意： 选项大写C必须写到压缩包名后面
-
-- 压缩多个文件：
-
-压缩文件名用空格连接
+- 解压
+```sh
+tar -zxvf vim.tar.gz
+```
 
 - 查看包里面内容不解压：
-
 选项：
- - -t
+ - -t 查看包里面内容不解压
+
+查看包内有哪些文件时，必须加 -t选项， 因为后面跟的是包名，所有 -f 选项也需要加上， -v选项可以看到文件的详细信息(效果类似ls 和 ls -la)。
+需要注意的一点是，如果-f选项和其他选项写在一起，如 -zcvf， -f选项必须写在最后，因为-f选项后面必须跟包名。
+查看包细节-z和-j选项加上与非貌似没有区别。
+eg:
+```sh
+tar -tvf vim.tar.gz
+```
+
+**总结**
+> 压　缩：tar -jcv -f filename.tar.bz2 要被压缩的文件或目录名称
+> 查　询：tar -jtv -f filename.tar.bz2
+> 解压缩：tar -jxv -f filename.tar.bz2 -C 欲解压缩的目录
+
+
+
+
 
 **Linux最常用的压缩格式是.tar.gz和.tar.bz2**
 
