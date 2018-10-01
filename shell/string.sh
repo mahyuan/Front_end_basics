@@ -171,3 +171,74 @@ echo ${repstr2/#abc/ABC} # ABC123abc123abc
 echo ${repstr2/%abc/ABC} # abc123abc123ABC
 echo ${repstr2//abc/ABC} # ABC123ABC123ABC
 
+# 位置参数变量
+# $n  n是数字，$0代表命令本身， $1-$9代表第一个到第九个参数
+# 十以上的参数需要用大括号包含，如${10}
+# 执行脚本的时候./string 12 21
+# $*  代表命令行中的所有的参数，$*把所有的参数看成了一个整体
+# $@ 代表命令行中所有的参数， 不过$@把每个参数区分对待
+# $# 代表命令行中所有参数的个数
+num1=$1
+num2=$2
+echo "\$0: $0"
+sum=$(($num1 + $num2))
+echo "sum: ${sum}" # 12 + 21 = 33
+echo "\$*: $*"
+echo "\$\@: $@"
+echo "\$\@: $#"
+# $* 和 $@区别
+for i in 1 2 3 4
+	do 
+		echo $i
+	done
+echo '$* 和 $@区别:'
+for j in "$*"
+	do 
+		echo "for j in \$* :${j}"
+	done
+# 循环一次
+
+for k in "$@"
+	do 
+		echo "for k in \$\@ :$k"
+	done
+# 每个参数循环一次
+
+
+## 预定义变量
+# $? 最后一次命令的返回状态, 正确执行返回0,否则返回的值非0
+lss || echo $?
+# $$ 当前进场的进程号（PID）
+# $! 回台运行的最后一个进程的进程号（PID）
+
+
+# read 接收键盘输入
+# read [选项] [变量名]
+# -p: 提示信息
+# -t: 秒数，等待时间
+# -n: 字符数，read命令只接受指定的字符数，就会执行(自动执行，不会等待回车)
+# -s: 隐藏输入的数据，适用于机密信息的输入，如：密码
+# -d: 定界符结束输入行
+# -a: 把输入的信息按数组保存，空格相连
+# read -p "请输入一个数字: "  number
+# echo -e "\n"
+# echo -e $number
+read -p "请输入一个密码：" -t 20 -s password
+# echo -e "\n"
+echo  $password
+
+read -p "要吃饭吗？[y/n]" -n 1 confirm
+echo $confirm
+
+# 输入两个， 空格相连
+read -p "first last?" first last
+echo "first $first"
+echo "last $last"
+
+# 定界符结束输入, 只要输入了定界符，会自动结束输入
+read -p "随便输入，用 ; 结束" -d ";" -s word
+echo "您刚才输入的是： $word"
+
+# 输入数组
+read -p "请输入三种最喜欢的水果：" -a fruits
+echo "${fruits[0]}, ${fruits[1]} and ${fruits[2]}"
