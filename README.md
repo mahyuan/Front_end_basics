@@ -16,7 +16,7 @@
 - mongodb
 - shell
 - class
-- cors
+- CORS
 - indexDB
 - koa
 - ssh
