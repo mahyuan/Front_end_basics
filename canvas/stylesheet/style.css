@@ -1,0 +1,16 @@
+body {
+	background-color: #eee;
+}
+.container {
+	display: block;
+	width: 100%;
+	padding: 20px auto;
+	background-color: #f5f5f5;
+}
+#canvas {
+	display: block;
+	background-color: #fff;
+	margin: 10px;
+	padding: 10px;
+	border: thin inset #aaa;
+}
