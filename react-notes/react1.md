@@ -273,5 +273,58 @@ shouldComponentReceiveProps ? (componentWillUpdate -> render -> componentDidUpda
 Unmountion: componentWillUnmount
 
 
+react简单的动画
+和vue一样，同个添加不同的class来设置动画和过度，
+```css
+.hide {
+	animation: hide-item 2s ease-in forward;
+}
+```
+animation 的 forwards 属性可以让动画结束后保存最后一帧的样式
 
+react-transition-group实现动画
+一个元素的动画
+```jsx
+render() {
+	return (
+		<Fragment>
+			<CSSTransition
+				in={this.state.show}
+				timeout={1000}
+				classNames='fade'
+				unmounOnExit
+				onEntered={(el) => {el.style.color = 'red'}}
+				appear={true}
+			>
+				<div
+					className={this.state.show ? 'show' : 'hide'}
+				>hello world</div>
+			</CSSTransition>
+			<button onClick={this.toggleHandle}>切换</button>
+		</Fragment>
+	)
+}
+```
+多个元素的动画
+```jax
+<TransitionGroup>
+ {
+	 this.state.list.map((item, index) => {
+		 return (
+			 <CSSTransition
+			 	timeout={300}
+				 classNames='fade'
+				 unmountOnExit
+				 onEnterEd={(el) => {el.style.color='green'}}
+				 appear={true}
+				 key="index"
+			 >
+			 	<div>{item}</div>
+			 </CSSTransition>
+		 )
+	 })
+ }
+</TransitionGroup>
+```
+多个元素的动画，在最外层加<TransitionGroup>标签，里面的按单个元素的动画方式写
 
