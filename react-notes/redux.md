@@ -13,4 +13,22 @@ redux核心的API
 - store.getState
 - store.subscribe
 
+UI组件： 只有render函数的组件
+容器组件：包含业务逻辑的组件
+无状态组件
+```jsx
+import  React from  'react';
 
+const TodoListUI = (props) => {
+    return (
+        <li
+            onClick={props.deleteItemHandle}
+            dangerouslySetInnerHTML={{__html: props.content}}
+        >
+        </li>
+    )
+};
+
+export default TodoListUI;
+```
+无状态组件的性能相对高一些
