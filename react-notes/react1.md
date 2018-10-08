@@ -267,7 +267,7 @@ componentWillMount -> render -> componentDidMount
 
 Updation:
 props:
-componentWillReceiveProps -> shouldComponentUpdate ? ( componentWillUpdate -> render -> componentDidUpdate ) : false
+componentWillReceiveProps(nextProps) -> shouldComponentUpdate(nextProps, nextState) ? ( componentWillUpdate(nextProps, nextState) -> render -> componentDidUpdate(prevProps, prevState) ) : false
 states:
 shouldComponentReceiveProps ? (componentWillUpdate -> render -> componentDidUpdate ) : false
 
