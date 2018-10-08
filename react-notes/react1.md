@@ -255,7 +255,7 @@ ref获取DOM是同步的，setState是异步的，两者一起用的时候应该
 - react的生命周期
 生命周期是指在某个时刻组件会自动调用执行的函数
 ![](http://wicdn.xiaohongchun.com/xhc-plat/1538895019935_MXZK7cctjZ.png)
-![](https://upload-images.jianshu.io/upload_images/2435411-84db7be9ca9cbdc5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/740/format/webp)
+![](http://wicdn.xiaohongchun.com/xhc-plat/1538971110305_htFie75y8b.png)
 
 initialization -> Mounting -> Updation -> Unmountion
 初始化             挂载
