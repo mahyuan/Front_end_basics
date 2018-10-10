@@ -1,6 +1,7 @@
 import React from 'react';
 import SliderItem from './SliderItem';
 
+
 class Slider extends React.Component {
 	constructor(props) {
     super(props);
@@ -20,18 +21,19 @@ class Slider extends React.Component {
 					className='imgContent'
 					style={this.styleRender(offset,totalWidth, height)}
         >
-					<SliderItem
-						list={list}
-						width={width}
-						height={height}
-					/>
+						<SliderItem
+							current={this.state.currentIndex}
+							list={list}
+							width={width}
+							height={height}
+						/>
 				</ul>
 			</div>
 		)
 	}
 	styleRender(offset, totalWidth, height) {
 		return {
-			transform: `translate(-${offset}rem, 0)`,
+			// transform: `translate(-${offset}rem, 0)`,
 			width: `${totalWidth}rem`,
 			height: `${height}rem`
 		}

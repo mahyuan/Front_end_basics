@@ -25,10 +25,34 @@ body {
 	transition: all 0.2s;
 }
 .SliderItem {
-	display: inline-block;
+	/* display: inline-block; */
 	width: 750px;
 	height: 420px;
 	box-sizing: border-box;
+}
+.show {
+	display: inline-block;
+	animation: show 0.5s;
+}
+.hide {
+	animation: hide 0.5s;
+	display: none;
+}
+@keyframes show{
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes hide {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
 .SliderItem img{
 	display: block;
