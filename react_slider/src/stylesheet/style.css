@@ -17,14 +17,19 @@ body {
 	/* position: absolute; */
 	/* left: 0; */
 	/* top: 0; */
+	position: relative;
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: nowrap;
 	width: max-content;
 	box-sizing: border-box;
 	transition: all 0.2s;
+	/* overflow: hidden; */
 }
 .SliderItem {
+	position: absolute;
+	left: 0;
+	top: 0;
 	/* display: inline-block; */
 	width: 750px;
 	height: 420px;
@@ -32,26 +37,31 @@ body {
 }
 .show {
 	display: inline-block;
-	animation: show 0.5s;
+	/* animation: show 1s linear forwards; */
 }
 .hide {
-	animation: hide 0.5s;
-	display: none;
+	box-sizing: border-box;
+	/* animation: hide 1s linear forwards; */
 }
 @keyframes show{
 	from {
 		opacity: 0;
+		transform: translate(-100%, 0);
 	}
 	to {
 		opacity: 1;
+		transform: translate(0, 0);
 	}
 }
 @keyframes hide {
 	from {
 		opacity: 1;
+		transform: translate(0, 0);
 	}
 	to {
 		opacity: 0;
+		display: none;
+		transform: translate(100%, 0);
 	}
 }
 .SliderItem img{

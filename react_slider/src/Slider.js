@@ -19,7 +19,7 @@ class Slider extends React.Component {
 			<div className="wapper">
 				<ul
 					className='imgContent'
-					style={this.styleRender(offset,totalWidth, height)}
+					style={this.styleRender(offset, width, height)}
         >
 						<SliderItem
 							current={this.state.currentIndex}
