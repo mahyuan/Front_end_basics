@@ -7,7 +7,7 @@ react 16 => react fiber
 - jsx
 - 开发调试工具
 - 虚拟DOM
-- 生母周期
+- 生命周期
 - redux
 - UI，容器组件
 - redux-saga
