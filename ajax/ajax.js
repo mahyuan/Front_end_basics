@@ -7,7 +7,6 @@ oReq.onload = reqListener;
 oReq.open("get", "https://mhynet.cn", true);
 oReq.send();
 
-//
 var oReq = new XMLHttpRequest();
 oReq.open("GET", "http://www.mozilla.org/", true);
 oReq.onreadystatechange = function (oEvent) {
@@ -58,8 +57,6 @@ function loadFile (sURL, fCallback /*, 传入参数1, 传入参数2, 等 */) {
   oReq.open("GET", sURL, true);
   oReq.send(null);
 }
-
-
 
 // 事件监控
 var req = new XMLHttpRequest();

@@ -213,14 +213,9 @@ http://foo.com/bar.html?foobar=baz&12345
 ```js
 var req = new XMLHttpRequest();
 req.open("GET", url += ((/\?/).test(url) ? "&" : "?") + (new Date()).getTime(), false);
-req.send(null); 
+req.send(null);
 ```
 
 ##安全性
 
 要启用跨站脚本，推荐的做法是对 XMLHttpRequest 的响应使用 the Access-Control-Allow-Origin 的 HTTP 头。
-
-
-
-
-
