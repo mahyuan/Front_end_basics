@@ -1,0 +1,13 @@
+{
+	"code": 0,
+	"data":  [
+		{
+			"city": "beijing",
+			"sex": 1
+		},
+		{
+			"city": "tianjin",
+			"sex": 2
+		}
+	]
+}
