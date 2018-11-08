@@ -30,7 +30,7 @@ app.get('/home', function(req, res) {
 })
 */
 
-exports.routes = routes;
+// exports.routes = routes;
 
 routes.forEach((route, index) => {
 	let name = route.name;
