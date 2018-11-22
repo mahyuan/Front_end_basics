@@ -1,9 +1,0 @@
-{
-  "name": "expressDemo",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "express": "^4.16.2"
-  }
-}
