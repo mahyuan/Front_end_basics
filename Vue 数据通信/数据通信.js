@@ -51,3 +51,13 @@ export default {
 	}
 }
 ```
+
+移除事件Listener
+```
+const clickHandler = function() {
+}
+Bus.$off('send', clickHandler);
+```
+回调函数是需要移除的函数名，如果注册事件的时候的回调函数是匿名函数（如箭头函数），则无法移除该特定事件，除非
+> 你可以通过不给EventBus.$off(‘i-got-clicked’)传回调参数来移除特定事件（i-got-clicked）上的所有Listeners（clickHandler）
+> 你也可以通过不带任何参数EventBus.$off()来移除事件总线上的所有Listeners。
