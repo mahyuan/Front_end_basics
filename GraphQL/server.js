@@ -4,7 +4,14 @@ var { buildSchema } = require('graphql');
 
 var schema = buildSchema(`
   type Query {
-    hello: String
+		hello: String
+		obj: {
+			first
+			last
+			email
+			total_view_time
+
+		}
   }
 `);
 
