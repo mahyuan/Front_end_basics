@@ -236,3 +236,61 @@ db.col.find().pretty()
 除了 find() 方法之外，还有一个 findOne() 方法，它只返回一个文档。
 
 
+跳过多少条数据
+```
+db.collection.find().skip(10).limit(3).sort(id)
+```
+skip(): 跳过多少条数据
+limit(): 返回多少条数据
+sort(): 排序
+
+
+数据更新
+语法：
+```
+db.collection.update(
+   <query>,
+   <update>,
+   {
+     upsert: <boolean>,
+     multi: <boolean>,
+     writeConcern: <document>
+   }
+)
+
+```
+实例：
+```
+db.collection.fin({x: 1})
+db.collection.update({x: 1}, {x: 99})
+```
+更新数据是只需要更新部分字段
+```
+db.collection.insert({x: 100, y: 100, z: 100})
+db.collection.update({z: 100}, {$set: {y: 99}})
+```
+更新部分字段时必须使用$set操作符，set后面存在的字段会更新，不存在的字段保持原样，不用set操作符的更新时会丢弃不在更新数据里面的字段
+
+
+更新不存在的记录,
+```
+db.collection.update({y: 999}, {y: 10000}, true)
+```
+第三个字段为upsert: true时，如果数据不存在就创建
+更新多条数据
+```
+db.collection.update({c: 1}, {c: 2}) // 只更新一条，其余的不更新
+db.collection.update({c: 1}, {$set: {c: 2}}, false, true)
+```
+
+
+
+
+
+
+
+
+
+
+
+
