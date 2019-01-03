@@ -210,8 +210,8 @@ db.inventory.deleteOne({status: "D"})
 db.collection.find(query, projection)
 ```
 参数说明：
-query： 可选参数， 查询他条件
-projection： 可选，使用投影操作符指定返回的键。查询时返回文档中所有键值，只需省略该参数即可（默认省略）。
+query：可选参数， 查询他条件
+projection：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值，只需省略该参数即可（默认省略）。
 如果你需要以易读的方式来读取数据，可以使用`pretty()` 方法，语法格式如下：
 ```
 db.col.find().pretty()
