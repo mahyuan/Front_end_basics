@@ -38,18 +38,22 @@ db.createUser({user: 'mhy', pwd: '12345', customData: '示例'， roles: [{role:
 ```
 
 ## MongoDB用户角色
+
 1.数据库角色
 - read
 - readWrite
 - dbAdmin
 - dbOwner
 - userAdmin
+
 2.集群角色
 - clusterAdmin
 - clusterManager
+
 3.备份角色
 - backup
 - restore
+
 4.其他特殊权限
 - DBAdminAnyDatabase
 
