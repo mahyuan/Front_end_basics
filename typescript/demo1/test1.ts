@@ -11,9 +11,9 @@ let fullName: string = `Li chengzhen`;
 let age: number = 23;
 let sentence: string = `hello, my friend${fullName}`;
 
+// 定义数数组
 let list1: number[] = [1, 2, 3];
 let list2: Array<number> = [4, 5, 6];
-
 
 // 元祖 tuple
 // 允许定义一个已知元素数量和类型的数组， 各个元素的类型不必相同

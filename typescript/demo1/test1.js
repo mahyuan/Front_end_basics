@@ -7,6 +7,7 @@ var firstName = "bill";
 var fullName = "Li chengzhen";
 var age = 23;
 var sentence = "hello, my friend" + fullName;
+// 定义数数组
 var list1 = [1, 2, 3];
 var list2 = [4, 5, 6];
 // 元祖 tuple
