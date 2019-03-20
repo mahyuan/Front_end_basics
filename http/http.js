@@ -3,24 +3,24 @@
 
 /*
 {
-	'content-type': 'text/plain',
-	'content-length': '111',
-	'host': 'mhynet.cn',
-	'accept': '*',
-	'connection': 'keep-alive'
+    'content-type': 'text/plain',
+    'content-length': '111',
+    'host': 'mhynet.cn',
+    'accept': '*',
+    'connection': 'keep-alive'
 }*/
 /*
 http.get({
-	hostname: 'localhost',
-	part: 2000,
-	path: '/',
-	agent: false, // 创建一个默认配置的一次性使用的Agent
+    hostname: 'localhost',
+    part: 2000,
+    path: '/',
+    agent: false, // 创建一个默认配置的一次性使用的Agent
 
 }, (res) => {
-	// 对响应进行处理
-	console.log('111')
+    // 对响应进行处理
+    console.log('111')
 }).on('socket', (socket) => {
-	socket.emit('agentRemove')
+    socket.emit('agentRemove')
 });*/
 
 // 代理的配置, 保持 socket 可用即使没有请求，以便它们可被将来的请求使用而无需重新建立一个 TCP 连接。
@@ -164,68 +164,3 @@ server.on('clientError', (err, socket) => {
   socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
 });
 server.listen(8000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
