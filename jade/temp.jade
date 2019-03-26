@@ -1,0 +1,52 @@
+doctype html
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if IE 10]><html class="ie10"><![endif]-->
+<!--[if !IE]><!--><html><!--<![endif]-->
+head
+  meta(charset="utf-8")
+  meta(content="viewport")
+  title jade template demo
+  style.
+    body { color: #f00; fontWeight: 700;}
+  script.
+    var courseVar = "jade demo"
+body
+  - var course = 'jade var'
+  - var data = { 'title': 'jade title var', 'desc': '这是jade学习笔记' }
+  - for (var k in data)
+    p= data[k]
+  - each val, key in data
+    p #{key}
+    span #{val}
+  h1.title #{course}
+  h2.title #{_name}
+  //- h2.title #{name}
+  //- h4.title #{data}
+  h5.title jade templage demo
+  p#desc description
+    span.text  text
+    span.text1.text2  text2
+    #name name a
+    span(class="title3" id="title3")
+  div.wrap
+    //- 注释
+    a(href="http://hahxxc.pmg", title="img", data-uid="1000") link
+    input(name="cource", type="text", value="jade")
+    input(name="type",  type="password")
+    input(name="checkbox",  type="checkbox", checked)
+  div.wrap
+    p.
+      1. aa
+      2. bb<strong>b</strong>
+      3. cc
+      <a href="#">33</a>
+    p
+      | 1.222
+      strong 2.333
+      | 3.444
+      | 5.ddsf
+      | 6.bb<strong>b</strong>
+</html>
+//-  前面的Html被注释包裹了，所以其闭合标签需要使用原生html标签
+
