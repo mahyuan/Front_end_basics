@@ -16,7 +16,6 @@
 - <img src="http://888.888.com/999.png" onerror="alert('XSS')">
 - <div style="height:expression(alert('XSS'),1)"></div>（这个仅于IE7(含)之前有效）
 
-
 ## 攻击手段和目的
 攻击者使被攻击者在浏览器中执行脚本后，如果需要收集来自被攻击者的数据（如cookie或其他敏感信息），可以自行架设一个网站，让被攻击者通过JavaScript等方式把收集好的数据作为参数提交，随后以数据库等形式记录在攻击者自己的服务器上。
 
