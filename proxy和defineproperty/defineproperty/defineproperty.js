@@ -8,9 +8,12 @@
  * 获取该定义属性： Object.getOwnPropertyDescriptor(obj, prop)
  * 如果一个描述符不具有value,writable,get 和 set 任意一个关键字，那么它将被认为是一个数据描述符。如果一个描述符同时有(value或writable)和(get或set)关键字，将会产生一个异常。
  * 即：（ value 或 writable） 与 （get 或 set ）不能同时出现
+ * enumerable定义了对象的属性是否可以在 for...in 循环和 Object.keys() 中被枚举。
+ * 当writable属性设置为false时，该属性被称为“不可写”。它不能被重新分配。
+ * configurable 属性设置为false，则该属性被认为是“不可配置的”，并且没有属性可以被改变（除了单向改变 writable 为 false）
  */
 
-const obj ={}
+const obj ={}``
 Object.defineProperty(obj, 'age', {
   configurable: true,
   enumerable: true,
