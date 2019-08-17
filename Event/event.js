@@ -1,3 +1,9 @@
+/**
+ * https://github.com/Gozala/events/blob/master/events.js
+ *
+ *
+ * */
+
 const EventEmitter = require('events');
 const emitter = new EventEmitter();
 
