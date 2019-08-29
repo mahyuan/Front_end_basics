@@ -257,6 +257,191 @@ http请求变量-- arg_PARAMETER、http_HEADER、sent_http_HEADER
 
 ## nginx模块
 官方模块 和 第三方模块
+- sub_status
+nginx的客户端状态
+```
+#编译选项：
+--with-http_stub_status_module
+
+# 配置语法：
+synatx: stub_status;
+default: ---
+context: server, location
+
+# 配置
+  # stub_status;
+  location /mystatus {
+      stub_status;
+  }
+```
+在浏览器中打开 http://localhost/mystatus即可看到nginx的状态
+```
+Active connections: 2
+server accepts handled requests
+ 137 137 374
+Reading: 0 Writing: 1 Waiting: 1
+```
+
+- random_index
+在目录中选择一个随机的主页
+```
+# 编译选项
+--with-http_random_index-module
+
+# 语法
+Syntax: random_index on | off;
+Default: random_index off;
+Context: location
+
+# 配置
+location / {
+  root /usr/local/var/www/random;
+  random_index on;
+  # index index.html index.htm;
+}
+```
+需要注意的是，该模块不识别隐藏文件
+
+- sub_module
+http内容替换，response内容替换
+```
+# 编译选项
+--with-http_sub_module
+
+# 语法1, 把string 替换为 replacement， 位置可以选择http,server 或 locaiton
+Syntax: sub_filter string replacement;
+default: --
+Context: http, server, location
+
+# 语法2， 用于服务端与浏览器端校验服务器的内容是否有更新，有更新返回最新内容，用于缓存场景
+Syntax: sub_filter_last_modified on | off;
+Default: sub_filter_last_modified off;
+Context: http, server, location
+
+# 语法3，匹配第一个还是匹配所有的
+Syntax: sub_filter_once on | off;
+Default: sub_filter_once on;
+Context: http, server, location
+```
+
+## nginx请求限制模块
+连接频率限制 -- limit_conn_module
+请求频率限制 -- limit_req_module
+
+### 连接频率限制
+```
+Syntax: limit_conn_zone key zone=name:size;
+Default: --
+Context: http
+
+Syntax: limit_conn zone number;
+Default: --
+Context: http, server, location
+
+http {
+  limit_conn_zone $binary_remote_addr zone=conn_zone:1m;
+  server {
+    listen      80;
+    server_name localhost;
+
+    location / {
+      limit_conn conn_zone 1;
+    }
+  }
+}
+```
+
+### 请求频率限制
+```
+Syntax: limit_req_zone key zone=name:size rate=rate;
+Default: --
+Context: http
+其中size单位可以为m(兆)，rate单位可以为r/s
+
+Syntax: limit_req zone=name [burst=number] [nodelay];
+Default: --
+Context: http,server,location
+
+http {
+  limit_req_zone $binary_remote_addr zone=req_zone:1m rate=1r/s;
+  server {
+    listen      80;
+    server_name localhost;
+
+    location / {
+      # limit_req zone=req_zone burst=3 nodelay;
+      # limit_req zone=req_zone;
+      limit_req zone=req_zone;
+    }
+  }
+}
+```
+
+## 访问控制
+基于IP的访问控制   -- http_acess_module
+基于用户的信任登录  -- http_auth_basic_module
+
+### http_acess_module
+```
+Syntax: allow address | CIDR | unix: | all;
+Default: --
+Context: http, server, locaton, limit_except
+
+Syntax: deny address | CIDR | unix: | all;
+Default: --
+Context: http, server, locaton, limit_except
+
+其中，CIDR: 网段
+
+server {
+  listen      80;
+  server_name localhost;
+
+  deny 192.168.1.1;
+  deny 192.168.1.1/24; # ip段
+  allow all;
+
+  location / {
+    root /usr/local/www;
+    index index.html index.htm;
+  }
+}
+```
+**access_module局限性**
+是根据remote_addr（ip地址）来限制的，对于经过代理的访问是无效的。
+**解决方案**
+- 采用x_forwarded_for
+http_x_forwarded_for=Client IP, Proxy(1)Ip, Proxy(2)Ip (记录整个过程中的ip地址)
+但是该请求头会被修改
+- 结合geo模块
+- 通过http自定义变量传递
+把客户端的remote_addr携带在该变量上
+
+### http_auth_basic_module
+```
+Syntax: auto_basic string | off;
+Default: auth_basic off;
+Context: http,server,location,limit_except
+
+Syntax: auth_basic_user_file file; # 该文件存储用户名和密码信息
+Default: --
+Context: http,server,location,limit_except
 
 
+location / {
+  root /user/local/www;
+  index index.html index.htm;
+  auth_basic "Auth access test!input your passeard!";
+  auth_basic_user_file /usr/local/www/auth_conf;
+}
+```
+需要使用 htpasswd模块生成密码
+```
+htpasswd -c <path> <user>
+```
+**access_module局限性**
+用户信息需要依赖文件方式；操作管理机械，效率低下
+**解决方案**
+- nginx结合LUA实现高效验证
+- nginx结合LDAP打通，利用nginx-auth-ldap模块
 
