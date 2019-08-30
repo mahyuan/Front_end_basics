@@ -87,7 +87,12 @@ Context:  http, server, location, if in location
 ```
 
 ### 防盗链
-
+nginx防盗链配置 http_refore模块
+```
+Syntax:
+Default:
+Context:
+```
 
 
 
