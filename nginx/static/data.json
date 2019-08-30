@@ -1,0 +1,165 @@
+{
+  "code": 0,
+  "msg": "home info",
+  "data": {
+    "banner": [{
+      "is_online": true,
+      "_id": "5c1ef6cbe580615d5e22aa71",
+      "img_url": "https://upload.jianshu.io/admin_banners/web_images/4533/fc384bd68d23df5114c41c3ef12ba12dd000e244.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540",
+      "jump_url": "",
+      "desc": "test1",
+      "__v": 0,
+      "create_time": "2018-12-23T02:45:31.431Z",
+      "update_time": "2019-08-30T02:26:42.022Z"
+    }, {
+      "is_online": true,
+      "_id": "5c1ef7279bf6a85d822d978d",
+      "img_url": "https://upload.jianshu.io/admin_banners/web_images/4533/fc384bd68d23df5114c41c3ef12ba12dd000e244.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540",
+      "jump_url": "",
+      "desc": "decc3fsd 2",
+      "__v": 0,
+      "create_time": "2018-12-23T02:47:03.604Z",
+      "update_time": "2019-08-30T02:26:42.023Z"
+    }, {
+      "is_online": true,
+      "_id": "5c1ef8ac6a9e87609897484e",
+      "img_url": "https://upload.jianshu.io/admin_banners/web_images/4533/fc384bd68d23df5114c41c3ef12ba12dd000e244.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540",
+      "jump_url": "",
+      "desc": "sd3 sdfsdf decc3fsd 2",
+      "__v": 0,
+      "create_time": "2018-12-23T02:53:32.202Z",
+      "update_time": "2019-08-30T02:26:42.023Z"
+    }, {
+      "is_online": true,
+      "_id": "5c1f14e424c37c612d0c483c",
+      "img_url": "https://upload.jianshu.io/admin_banners/web_images/4533/fc384bd68d23df5114c41c3ef12ba12dd000e244.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540",
+      "jump_url": "",
+      "desc": "5c1f14e424c37c612d0c483c sd3 未来，主题揭晓",
+      "__v": 0,
+      "create_time": "2018-12-23T04:53:56.426Z",
+      "update_time": "2019-08-30T02:26:42.023Z"
+    }, {
+      "is_online": true,
+      "_id": "5c1f17d81673c06249287d94",
+      "img_url": "https://upload.jianshu.io/admin_banners/web_images/4533/fc384bd68d23df5114c41c3ef12ba12dd000e244.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540",
+      "jump_url": "https://upload.jianshu.io/admin_banners/web_images/4533/fc384bd68d23df5114c41c3ef12ba12dd000e244.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540",
+      "desc": "helloooo",
+      "__v": 0,
+      "create_time": "2018-12-23T05:06:32.299Z",
+      "update_time": "2019-07-11T13:25:25.223Z"
+    }],
+    "company_profile": [{
+      "is_online": true,
+      "_id": "5c1f1a23e61099628c0ce157",
+      "title": "实力",
+      "desc": "专注六年\n战略合作资源\n中国独家代理",
+      "date": "2018-12-23T05:16:19.384Z",
+      "__v": 0,
+      "create_time": "2019-08-30T02:26:42.209Z",
+      "update_time": "2019-08-30T02:26:42.209Z"
+    }, {
+      "is_online": true,
+      "_id": "5c1f1a23e61099628c0ce158",
+      "title": "背书",
+      "desc": "官方机构\n战略合作资源\n中国独家代理",
+      "date": "2018-12-23T05:16:19.386Z",
+      "__v": 0,
+      "create_time": "2019-08-30T02:26:42.210Z",
+      "update_time": "2019-08-30T02:26:42.210Z"
+    }, {
+      "is_online": true,
+      "_id": "5c1f1a23e61099628c0ce159",
+      "title": "优势",
+      "desc": "项目优势\n战略合作资源\n中国独家代理",
+      "date": "2018-12-23T05:16:19.387Z",
+      "__v": 0,
+      "create_time": "2019-08-30T02:26:42.210Z",
+      "update_time": "2019-08-30T02:26:42.210Z"
+    }],
+    "home_pro_list": [{
+      "more_info": ["https://hbimg.b0.upaiyun.com/8a94d2627ef3a63c561154eeccd02d9f97530d6632601-ZkbXIu_fw658", "https://hbimg.b0.upaiyun.com/9e0e9d00fcbe01a8b7359db3876b3eb10a0e47aedd04a-TW6Eev_fw658", "https://hbimg.b0.upaiyun.com/750154acfeeac35296e37a8cadf103276b303f50c1b78-Ue1g5L_fw658", "https://hbimg.b0.upaiyun.com/09109159213825b1024135823be850bc5023531683fd4-3bseP6_fw658", "https://hbimg.b0.upaiyun.com/80fd5a05f84edf3bec0dcf00e497d4027464a7978a6c3-gYcZN3_fw658", "https://hbimg-other.b0.upaiyun.com/img/promotion/1ba2fe30840af529d247cb13381a982a02b9bdd31f0b7", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDbovahORDYAxjUAjIIDnrUSH46MM0", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCbrv2y1gEQ2AMY1AIyCA2ljugW4QdB", "https://hbimg-other.b0.upaiyun.com/img/promotion/05ec58efebb28e72c5e38bb35f28703d561e0352192f9"],
+      "_id": "5c1f77494c48e774a1e1ea0a",
+      "img": "https://hbimg.b0.upaiyun.com/e9d45d6be8d761743407a037d3c3482da3835fe81721c-nvniE2_sq320",
+      "name": "中国国家大剧院",
+      "desc": "中国国家大剧院,国家：中国, 适合人群：文艺青年,时间：2019.01.08-2019.02.08",
+      "type": "quality",
+      "tag": "优质项目",
+      "price": "￥23400",
+      "country": "英国",
+      "people": "美籍华人 老外",
+      "time": "2019-08-30T02:26:42.408Z",
+      "create_time": "2019-08-30T02:26:42.408Z",
+      "update_time": "2019-08-30T02:26:42.408Z"
+    }, {
+      "more_info": ["https://hbimg.b0.upaiyun.com/8a94d2627ef3a63c561154eeccd02d9f97530d6632601-ZkbXIu_fw658", "https://hbimg.b0.upaiyun.com/6c9fef70153fa54722203296c0e7781be49a61a9a3182-6esyvZ_fw658", "https://hbimg.b0.upaiyun.com/09109159213825b1024135823be850bc5023531683fd4-3bseP6_fw658", "https://hbimg.b0.upaiyun.com/80fd5a05f84edf3bec0dcf00e497d4027464a7978a6c3-gYcZN3_fw658", "https://hbimg-other.b0.upaiyun.com/img/promotion/1ba2fe30840af529d247cb13381a982a02b9bdd31f0b7", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDbovahORDYAxjUAjIIDnrUSH46MM0", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCbrv2y1gEQ2AMY1AIyCA2ljugW4QdB", "https://hbimg-other.b0.upaiyun.com/img/promotion/05ec58efebb28e72c5e38bb35f28703d561e0352192f9"],
+      "_id": "5c1f77b64c48e774a1e1ea0b",
+      "img": "https://hbimg.b0.upaiyun.com/e9d45d6be8d761743407a037d3c3482da3835fe81721c-nvniE2_sq320",
+      "name": "5464英国证券交易",
+      "desc": "5464英国证券交易所,国家：英国, 适合人群：本科毕业生 专科毕业生,时间：2019.01.08-2019.02.08",
+      "type": "quality",
+      "tag": "优质项目",
+      "price": "￥23400",
+      "country": "英国",
+      "people": "美籍华人 老外",
+      "time": "2019-08-30T02:26:42.408Z",
+      "create_time": "2019-08-30T02:26:42.408Z",
+      "update_time": "2019-08-30T02:26:42.408Z"
+    }, {
+      "more_info": ["https://hbimg.b0.upaiyun.com/750154acfeeac35296e37a8cadf103276b303f50c1b78-Ue1g5L_fw658", "https://hbimg.b0.upaiyun.com/8a94d2627ef3a63c561154eeccd02d9f97530d6632601-ZkbXIu_fw658", "https://hbimg.b0.upaiyun.com/6c9fef70153fa54722203296c0e7781be49a61a9a3182-6esyvZ_fw658", "https://hbimg.b0.upaiyun.com/09109159213825b1024135823be850bc5023531683fd4-3bseP6_fw658", "https://hbimg.b0.upaiyun.com/80fd5a05f84edf3bec0dcf00e497d4027464a7978a6c3-gYcZN3_fw658", "https://hbimg-other.b0.upaiyun.com/img/promotion/1ba2fe30840af529d247cb13381a982a02b9bdd31f0b7", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDbovahORDYAxjUAjIIDnrUSH46MM0", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCbrv2y1gEQ2AMY1AIyCA2ljugW4QdB", "https://hbimg-other.b0.upaiyun.com/img/promotion/05ec58efebb28e72c5e38bb35f28703d561e0352192f9"],
+      "_id": "5c1f77cc4c48e774a1e1ea0c",
+      "img": "https://hbimg.b0.upaiyun.com/e9d45d6be8d761743407a037d3c3482da3835fe81721c-nvniE2_sq320",
+      "name": "AAA英国证券交易",
+      "desc": "12英国证券交易所,国家：英国, 适合人群：本科毕业生 专科毕业生,时间：2019.01.08-2019.02.08",
+      "type": "quality",
+      "tag": "优质项目",
+      "price": "￥23400",
+      "country": "英国",
+      "people": "美籍华人 老外",
+      "time": "2019-08-30T02:26:42.409Z",
+      "create_time": "2019-08-30T02:26:42.409Z",
+      "update_time": "2019-08-30T02:26:42.409Z"
+    }, {
+      "more_info": ["https://hbimg.b0.upaiyun.com/8a94d2627ef3a63c561154eeccd02d9f97530d6632601-ZkbXIu_fw658", "https://hbimg.b0.upaiyun.com/6c9fef70153fa54722203296c0e7781be49a61a9a3182-6esyvZ_fw658", "https://hbimg.b0.upaiyun.com/09109159213825b1024135823be850bc5023531683fd4-3bseP6_fw658", "https://hbimg.b0.upaiyun.com/80fd5a05f84edf3bec0dcf00e497d4027464a7978a6c3-gYcZN3_fw658", "https://hbimg-other.b0.upaiyun.com/img/promotion/1ba2fe30840af529d247cb13381a982a02b9bdd31f0b7", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDbovahORDYAxjUAjIIDnrUSH46MM0", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCbrv2y1gEQ2AMY1AIyCA2ljugW4QdB", "https://hbimg-other.b0.upaiyun.com/img/promotion/05ec58efebb28e72c5e38bb35f28703d561e0352192f9"],
+      "_id": "5c1f77d84c48e774a1e1ea0d",
+      "img": "https://hbimg.b0.upaiyun.com/4e2a7626b6dcd6261b3f45fa400b019030fa182e16487-AmrVuk_sq320",
+      "name": "BBB英国证券交易",
+      "desc": "NN英国证券交易所,国家：英国, 适合人群：本科毕业生 专科毕业生,时间：2019.01.08-2019.02.08",
+      "type": "quality",
+      "tag": "优质项目",
+      "price": "￥23400",
+      "country": "英国",
+      "people": "美籍华人 老外",
+      "time": "2019-08-30T02:26:42.409Z",
+      "create_time": "2019-08-30T02:26:42.409Z",
+      "update_time": "2019-08-30T02:26:42.409Z"
+    }, {
+      "more_info": ["https://hbimg.b0.upaiyun.com/8a94d2627ef3a63c561154eeccd02d9f97530d6632601-ZkbXIu_fw658", "https://hbimg.b0.upaiyun.com/6c9fef70153fa54722203296c0e7781be49a61a9a3182-6esyvZ_fw658", "https://hbimg.b0.upaiyun.com/09109159213825b1024135823be850bc5023531683fd4-3bseP6_fw658", "https://hbimg.b0.upaiyun.com/80fd5a05f84edf3bec0dcf00e497d4027464a7978a6c3-gYcZN3_fw658", "https://hbimg-other.b0.upaiyun.com/img/promotion/1ba2fe30840af529d247cb13381a982a02b9bdd31f0b7", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDbovahORDYAxjUAjIIDnrUSH46MM0", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCbrv2y1gEQ2AMY1AIyCA2ljugW4QdB", "https://hbimg-other.b0.upaiyun.com/img/promotion/05ec58efebb28e72c5e38bb35f28703d561e0352192f9"],
+      "_id": "5c1f77e54c48e774a1e1ea0e",
+      "img": "https://hbimg.b0.upaiyun.com/14cc639f1bde0eda3b295f88b1b83d746801858940c59-TS1zMi_sq320",
+      "name": "SDS英国证券交易",
+      "desc": "SFW英国证券交易所,国家：英国, 适合人群：本科毕业生 专科毕业生,时间：2019.01.08-2019.02.08",
+      "type": "quality",
+      "tag": "优质项目",
+      "price": "￥23400",
+      "country": "英国",
+      "people": "美籍华人 老外",
+      "time": "2019-08-30T02:26:42.409Z",
+      "create_time": "2019-08-30T02:26:42.409Z",
+      "update_time": "2019-08-30T02:26:42.409Z"
+    }, {
+      "more_info": ["https://hbimg.b0.upaiyun.com/8a94d2627ef3a63c561154eeccd02d9f97530d6632601-ZkbXIu_fw658", "https://hbimg.b0.upaiyun.com/80fd5a05f84edf3bec0dcf00e497d4027464a7978a6c3-gYcZN3_fw658", "https://hbimg-other.b0.upaiyun.com/img/promotion/1ba2fe30840af529d247cb13381a982a02b9bdd31f0b7", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDbovahORDYAxjUAjIIDnrUSH46MM0", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCbrv2y1gEQ2AMY1AIyCA2ljugW4QdB", "https://hbimg-other.b0.upaiyun.com/img/promotion/05ec58efebb28e72c5e38bb35f28703d561e0352192f9"],
+      "_id": "5c1f77f54c48e774a1e1ea0f",
+      "img": "https://hbimg.b0.upaiyun.com/4e2a7626b6dcd6261b3f45fa400b019030fa182e16487-AmrVuk_sq320",
+      "name": "#DSF@ 英国证券交易",
+      "desc": "SDF D 12英国证券交易所,国家：英国, 适合人群：本科毕业生 专科毕业生,时间：2019.01.08-2019.02.08",
+      "type": "quality",
+      "tag": "优质项目",
+      "price": "￥23400",
+      "country": "英国",
+      "people": "美籍华人 老外",
+      "time": "2019-08-30T02:26:42.409Z",
+      "create_time": "2019-08-30T02:26:42.409Z",
+      "update_time": "2019-08-30T02:26:42.409Z"
+    }]
+  }
+}
