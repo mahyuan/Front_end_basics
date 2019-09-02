@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>sendfile on</h1>
+  <div id="app"></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  window.addEventListener('load', function() {
+    $.ajax({
+      url: 'http://s.mhy.com:7001/',
+      context: document.body,
+      success: function(res) {
+        console.log('res', res);
+        document.querySelector('#app').innerText = res.data
+
+      },
+      error: function(e) {
+        console.log(err);
+
+      }
+    })
+
+  })
+  </script>
+  <script src="./main.js"></script>
+
+</body>
+</html>
