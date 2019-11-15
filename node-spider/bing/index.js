@@ -4,11 +4,18 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const $ = cheerio.load('<ul class="crs_pane">...</ul>');
-const url = 'https://bing.ioliu.cn/?p=';
+const originUrl = 'https://bing.ioliu.cn/?p=';
+let isFirstReq = true
+let count = null;
 
 (function() {
-  const count = '';
+  if (count === null) {
+    getRequest(originUrl, isFirstReq)
+  }
+
+})()
+
+function getRequest(url, isFirstReq) {
   https.get(url, function(res) {
     var html = '';
     res.on('data', function(data) {
@@ -22,8 +29,7 @@ const url = 'https://bing.ioliu.cn/?p=';
   }).on('error', (err) => {
     console.log('err', err);
   })
-
-})()
+}
 
 function crawlerChapter(html) {
   const $ = cheerio.load(html,  {
@@ -32,6 +38,7 @@ function crawlerChapter(html) {
   });
   const data = [];
   const card = $('.item');
+  const
 
   card.map(function(node) {
     const item = $(this);
@@ -57,11 +64,6 @@ function crawlerChapter(html) {
     if (err) throw err;
     console.log('save res to log');
   });
-
-
-
-
-  // console.log('--pntile---', pntile);
 
 
 }
