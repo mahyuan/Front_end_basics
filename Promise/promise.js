@@ -146,11 +146,11 @@ function myAsyncFunction(method, url) {
     };
     // xhr.addEventListener("progress", updateProgress);
     // progress 事件一般用于文件下载
+    xhr.onerror = () => reject(xhr.statusText);
 
     xhr.open(method, url);
     xhr.setRequestHeader('content-type','application/json; charset=utf-8')
 
-    xhr.onerror = () => reject(xhr.statusText);
     xhr.send();
   });
 };
