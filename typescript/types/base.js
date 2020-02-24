@@ -10,9 +10,13 @@
 // // 枚举 enum
 // var Color;
 // (function (Color) {
-//     Color[Color["Red"] = 0] = "Red";
-//     Color[Color["Green"] = 1] = "Green";
-//     Color[Color["Blue"] = 2] = "Blue";
+//     Color[Color["Red"] = 1] = "Red";
+//     Color[Color["Green"] = 2] = "Green";
+//     Color[Color["Blue"] = 3] = "Blue";
 // })(Color || (Color = {}));
 // var color = Color.Blue;
 // console.log('Color.blue', color);
+// var colorName = Color[2];
+// var notSure = 4;
+// notSure.ifItExists();
+// notSure.toFixed();
