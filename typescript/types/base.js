@@ -52,14 +52,3 @@ var someValue1 = '';
 var strLength1 = someValue1.length;
 var someValue2 = '';
 var strLength2 = someValue2.length;
-function createSquire(config) {
-    var newSquare = { color: 'red', area: 100 };
-    if (config.color) {
-        newSquare.color = config.color;
-    }
-    if (config.width) {
-        newSquare.area = config.width * config.width;
-    }
-    return newSquare;
-}
-var SquireItem = createSquire({ color: 'green', width: 12 });

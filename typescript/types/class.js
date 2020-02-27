@@ -176,7 +176,16 @@ var AccountingClub = /** @class */ (function (_super) {
         return _super.call(this, 'Accounting and auditing') || this; // 派生类的构造函数中必须调用 super
     }
     AccountingClub.prototype.printMetting = function () {
-        return this.name;
+        console.log('1');
+    };
+    AccountingClub.prototype.generateReports = function () {
+        console.log('Generating accounting reports...');
     };
     return AccountingClub;
 }(Club));
+var club;
+// club = new Club() // 不能创建抽象类的实例
+club = new AccountingClub();
+club.printName();
+club.printMetting();
+// club.generateReports() // 方法在声明的抽象类中不存在
