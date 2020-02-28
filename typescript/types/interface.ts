@@ -55,3 +55,48 @@ mysSearch = function(source: string, subString: string) {
 /**
  * 继承接口
  */
+interface IPerson {
+  firstName: string
+  lastName: string
+  sayHi: () => string
+}
+
+interface IParent2 {
+  v2:number
+}
+
+interface Musician extends IPerson {
+  instrument: string
+}
+
+interface Child extends IPerson, IParent2 { }
+
+var customer: IPerson = {
+  firstName: 'Tom',
+  lastName: 'Hanks',
+  sayHi: () => {return 'Hi there'}
+}
+
+
+
+
+/**
+ * 类可以实现接口
+ * 使用implements
+ */
+interface ILoan {
+  interest: number
+}
+class AgriLoan implements ILoan {
+  interest: number
+  rebate: number
+
+  constructor(interest: number, rebate: number) {
+    this.interest = interest
+    this.rebate = rebate
+  }
+}
+
+const obj = new AgriLoan(10, 4)
+console.log('obj.interest', obj.interest)
+console.log('obj.rebate', obj.rebate)
