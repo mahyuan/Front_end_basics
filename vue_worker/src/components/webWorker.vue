@@ -6,12 +6,16 @@
       <button @click="handleClickAsk">Add Num</button>
       <button @click="handleClickPost">Post</button>
     </div>
+    <div class="iframe">
+      <iframe src="//127.0.0.1:7611" frameborder="0"></iframe>
+    </div>
     <div class="content">
       <div v-for="item in values" :key="item.num" class="item">
         <span class="label">{{ item.num }}</span>
         <span class="value">{{ item.value }}</span>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -139,6 +143,7 @@ button {
   background: rgb(126, 153, 126);
   border: 1px solid rgb(202, 228, 202);
   border-radius: 3px;
+  cursor: pointer;
 }
 h3 {
   margin: 40px 0 0;
@@ -153,5 +158,10 @@ li {
 }
 a {
   color: #42b983;
+}
+.iframe {
+  position: relative;
+  float: right;
+  background: #f6f6f6;
 }
 </style>

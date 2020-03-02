@@ -8,19 +8,19 @@ window.onload = function(e) {
     const textEl = document.querySelector('.text')
     console.log('textEl', textEl);
     ask.onclick = function(e) {
-      // console.log('ask click', e);
-      myWorker.postMessage({type: 'ask'})
+      console.log('ask click');
+      myWorker.postMessage('ask')
       myWorker.onmessage = function(e) {
-        console.log('ask onmessage', e.data);
+        // console.log('ask onmessage', e.data);
         changeEl(e.data)
       }
     }
 
     send.onclick = function (e) {
-      // console.log('send click', e);
-      myWorker.postMessage({type: 'send'})
+      console.log('send click');
+      myWorker.postMessage('send')
       myWorker.onmessage = function(e) {
-        console.log('send onmessage', e.data);
+        // console.log('send onmessage', e.data);
         changeEl(e.data)
       }
     }
