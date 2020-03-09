@@ -22,3 +22,7 @@ objectStore.createIndex('id', 'id', {
 ## 离线缓存
 只有在第二次刷新的时候才会更新客户端的数据， 第一次刷新更新缓存
 navagator.onLine 判断是否在线
+
+
+
+[封装成class](https://www.cnblogs.com/ww01/p/11906705.html)
