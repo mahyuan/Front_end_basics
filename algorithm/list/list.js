@@ -118,13 +118,13 @@ class List {
     contains(item) {
         if(this.dataStore.indexOf(item) > -1) return true;
         else return false;
-        
+
         // return this.dataStore.includes(item);
     }
 
 }
 
-/* 
+/*
 this.clear = clear;
 this.find = find;    //寻找元素
 this.toString = toString; //显示列表中的元素
