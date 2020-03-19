@@ -5,19 +5,23 @@ class Node {
   constructor(element) {
     this.element = element
     this.next = null
-    // this.prev = null
   }
 }
 
 class LinkList {
-  constructor(head) {
-    this.head = head
-    this.find = find
-    this.insert = insert
-    this.remove = remove
-    this.findPrev = findPrev
-    this.display = this.display
+  constructor(head = 'head') {
+    this.head = new Node(head)
   }
+
+  // 前面插入还是后面插入
+  insert(newElememt, item) {
+    let newNode = new Node(newElememt)
+    let currentNode = this.find(item)
+
+    newNode.next = currentNode.next
+    currentNode.next = newNode
+  }
+
   find(item) {
     let current = this.head
     while(current.element !== item) {
@@ -26,17 +30,40 @@ class LinkList {
     return current
   }
 
-  // 前面插入还是后面插入
-  insert(newElememt, item) {
-    let newNode = new Node(newElememt)
-    let currentNode = this.find(item)
-
-    newItem.next = currentNode.next
-    currentNode.next = newNode
+  remove(item) {
+    let prevNode = this.findPrev(item)
+    if(prevNode.next !== null) {
+      prevNode.next = prevNode.next.next
+    }
   }
 
-  remove(item) {
-    // let currentNode = this.head
+  findPrev(item) {
+    let currentNode = this.head
+    while (currentNode.next !== null && currentNode.element !== item) {
+      currentNode = currentNode.next
+    }
+    return currentNode
+  }
 
+  display() {
+    let result = []
+    let currentNode = this.head
+
+    while(currentNode.next !== null) {
+      result.push(currentNode.element)
+      currentNode = currentNode.next
+    }
+
+    return result
   }
 }
+
+let llist = new LinkList()
+llist.insert('Apple', 'head')
+llist.insert('Banana', 'head')
+llist.insert('Pear', 'Banana')
+llist.insert('China', 'Banana')
+let res = llist.display()
+console.log('display:', res);
+llist.remove('Apple')
+console.log(llist.display());
