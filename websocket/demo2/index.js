@@ -3,20 +3,19 @@ const port = 4006
 const WebSocketServer = WebSocket.Server;
 
 const wss = new WebSocketServer({
-    port: port
+  port: port
 });
 
+
 wss.on('connection', function (ws) {
-    console.log(`[SERVER] connection()`);
+    console.log(`[SERVER] connection()`, ws);
     ws.on('message', function (message) {
-        console.log(`[SERVER] Received: ${message}`);
-        setTimeout(() => {
-            ws.send(`What's your name?`, (err) => {
-                if (err) {
-                    console.log(`[SERVER] error: ${err}`);
-                }
-            });
-        }, 1000);
+      console.log(`[SERVER] Received:`, message);
+      ws.send(message, err => {
+        if(err) {
+          console.log('server send buffer error', err);
+        }
+      })
     })
 });
 
