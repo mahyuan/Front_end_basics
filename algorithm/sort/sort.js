@@ -1,4 +1,5 @@
 let createArr = require('./createArr.js')
+let count = 1000000
 /**
  * 冒泡排序 BubbleSort
  * 冒泡排序的算法思想如下（升序排序）：
@@ -12,7 +13,7 @@ let createArr = require('./createArr.js')
 
 
 console.time('createArr')
-let arr = createArr(100000)
+let arr = createArr(count)
 // console.log(arr, 'arr')
 // console.log(arr.length, 'arr.length')
 console.timeEnd('createArr')
@@ -64,7 +65,7 @@ function selctionSort(data) {
 
 	return data
 }
-arr = createArr(100000)
+arr = createArr(count)
 console.time('selctionSort')
 selctionSort(arr)
 // console.log(selctionSort(arr), 'selctionSort')
@@ -93,7 +94,7 @@ function insertionSort(data) {
 	}
 	return data
 }
-arr = createArr(100000)
+arr = createArr(count)
 console.time('insertionSort')
 insertionSort(arr)
 // console.log(insertionSort(arr), 'insertionSort')
@@ -129,7 +130,7 @@ function shallSort(array) {
 
 	return array;
 }
-arr = createArr(100000)
+arr = createArr(count)
 console.time('shallSort')
 shallSort(arr)
 // console.log(shallSort(arr), 'shallSort')
@@ -170,7 +171,7 @@ function merge(left, right) {
 		result.push(right.shift());
 	return result;
 }
-arr = createArr(100000)
+arr = createArr(count)
 console.time('mergeSort')
 mergeSort(arr)
 // console.log(mergeSort(arr), 'mergeSort')
@@ -200,7 +201,7 @@ function quickSort( arr ){
 	}
 	return quickSort( left ).concat( pivot, quickSort( right ));
 }
-arr = createArr(100000)
+arr = createArr(count)
 console.time('quickSort')
 quickSort(arr)
 // console.log(quickSort(arr), 'quickSort')

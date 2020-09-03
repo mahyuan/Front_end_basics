@@ -85,15 +85,37 @@ function shuffleSlow(arr = []) {
 }
 function shuffleQuick(arr) {
   let len = arr.length
-  var newArr = []
-  while(len) {
-    var i = Math.floor(Math.random() * len--)
-    let item = arr.splice(i, 1)[0]
-    newArr.push(item)
-
+  let temp
+  for(let i = len - 1; i >= 0; i--) {
+    var index = Math.floor(Math.random() * (len + 1))
+    temp = arr[i]
+    arr[i] = arr[index]
+    arr[index] = temp
   }
-  return newArr
+  return arr
 }
+/**
+ * Fisher–Yates shuffle
+ * 可以直接绑定到原型上
+ */
+// Array.prototype.shuffle = function() {
+//   var input = this;
+
+//   for (var i = input.length-1; i >=0; i--) {
+
+//       var randomIndex = Math.floor(Math.random()*(i+1));
+//       var itemAtIndex = input[randomIndex];
+
+//       input[randomIndex] = input[i];
+//       input[i] = itemAtIndex;
+//   }
+//   return input;
+// }
+// arr = newRangeArr(count)
+// console.time('shuffle')
+// arr.shuffle()
+// console.timeEnd('shuffle')
+
 
 function newRangeArr(range) {
   let  ramArr = []
@@ -122,8 +144,11 @@ function createArr(count) {
 }
 
 
-console.time('createarr')
-createArr(count)
-console.timeEnd('createarr')
+// console.time('createarr')
+// createArr(count)
+// console.timeEnd('createarr')
+
+
+
 
 module.exports = createArr
