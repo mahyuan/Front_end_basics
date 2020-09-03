@@ -11,30 +11,31 @@ let createArr = require('./createArr.js')
 // var arr = []
 
 
-let arr = createArr(1000)
-// console.log(arr, 'arr')
-console.log(arr.length, 'arr.length')
 console.time('createArr')
+let arr = createArr(100000)
+// console.log(arr, 'arr')
+// console.log(arr.length, 'arr.length')
 console.timeEnd('createArr')
-console.log(Math.max(...arr), 'max')
+// console.log(Math.max(...arr), 'max')
 
 function bubbleSort(data) {
+
 	var temp = 0
 	for (var i = data.length ; i > 0; i--) {
 		for (var j = 0; j < i - 1; j++) {
 			if(data[j] > data[j+1]) {
 				temp = data[j]
 				data[j] = data[j+1]
-				data[j+1] = temp		
+				data[j+1] = temp
 			}
 		}
 	}
 	return data
 }
+console.time('bubbleSort')
 bubbleSort(arr)
 // console.log(bubbleSort(arr), 'bubbleSort')
-console.time('bubbleSort') 
-console.timeEnd('bubbleSort') 
+console.timeEnd('bubbleSort')
 
 /**
  * 选择排序（SelctionSort）
@@ -63,11 +64,12 @@ function selctionSort(data) {
 
 	return data
 }
+arr = createArr(100000)
+console.time('selctionSort')
 selctionSort(arr)
 // console.log(selctionSort(arr), 'selctionSort')
-console.time('selctionSort') 
-console.timeEnd('selctionSort') 
-/** 
+console.timeEnd('selctionSort')
+/**
  * 插入排序（insertionSort）
  * 插入排序有点类似人类按字母顺序对数据进行排序，就如同你打扑克牌一样，将摸来的扑克按大小放到合适的位置一样。它的原理就是通过嵌套循环，外循环将数组元素挨个移动，
  * 而内循环则对外循环中选中的元素及它后面的元素进行比较；如果外循环中选中的元素比内循环中选中的元素小，那么数组元素会向右移动，为内循环中的这个元素腾出位置。
@@ -91,10 +93,11 @@ function insertionSort(data) {
 	}
 	return data
 }
+arr = createArr(100000)
+console.time('insertionSort')
 insertionSort(arr)
 // console.log(insertionSort(arr), 'insertionSort')
-console.time('insertionSort') 
-console.timeEnd('insertionSort') 
+console.timeEnd('insertionSort')
 
 /**
  * 希尔排序（Shell Sort）
@@ -126,9 +129,10 @@ function shallSort(array) {
 
 	return array;
 }
+arr = createArr(100000)
+console.time('shallSort')
 shallSort(arr)
 // console.log(shallSort(arr), 'shallSort')
-console.time('shallSort')
 console.timeEnd('shallSort')
 
 /**
@@ -138,7 +142,7 @@ console.timeEnd('shallSort')
  * 1.把长度为n的输入序列分成两个长度为n/2的子序列；
  * 2.对这两个子序列分别采用归并排序；
  * 3.将两个排序好的子序列合并成一个最终的排序序列
- * 
+ *
  */
 function mergeSort ( array ) {
 	var len = array.length;
@@ -166,13 +170,14 @@ function merge(left, right) {
 		result.push(right.shift());
 	return result;
 }
+arr = createArr(100000)
+console.time('mergeSort')
 mergeSort(arr)
 // console.log(mergeSort(arr), 'mergeSort')
-console.time('mergeSort')
 console.timeEnd('mergeSort')
 
 
-/** 
+/**
  * 快速排序（Quicksort）
  * 快速排序是处理大数据最快的排序算法之一，它也是一种分而治之的算法，通过递归方式将数据依次分解为包含较小元素和较大元素的不同子序列，会不断重复这个步骤，
  * 直到所有的序列全部为有序的，最后将这些子序列一次拼接起来，就可得到排序好的数据。
@@ -195,9 +200,10 @@ function quickSort( arr ){
 	}
 	return quickSort( left ).concat( pivot, quickSort( right ));
 }
+arr = createArr(100000)
+console.time('quickSort')
 quickSort(arr)
 // console.log(quickSort(arr), 'quickSort')
-console.time('quickSort')
 console.timeEnd('quickSort')
 
 module.exports = {
@@ -208,4 +214,4 @@ module.exports = {
 	mergeSort,
 	quickSort
 }
-console.log(module)
+// console.log(module)
