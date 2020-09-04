@@ -87,7 +87,7 @@ function shuffleQuick(arr) {
   let len = arr.length
   let temp
   for(let i = len - 1; i >= 0; i--) {
-    var index = Math.floor(Math.random() * (len + 1))
+    var index = Math.floor(Math.random() * (i + 1))
     temp = arr[i]
     arr[i] = arr[index]
     arr[index] = temp
