@@ -3,24 +3,38 @@ const cherrio = require( 'cheerio')
 const fs = require('fs')
 const path = require('path')
 const EventEmitter = require('events');
-const MongodbClient = require('./mongo')
+const MongodbClient = require('./mongo');
 
 class Spider {
   constructor({ url = '', dir}) {
     this.url = url
     this.dir = dir
-    this.nodeList = []
-    this.imgList = []
+    this.currentPage = url.match(/\d+$/)[0]
+    this.tag = this.url.replace(/https\:\/\/\w+\.\w+\//, '').replace(/\?.*/, '')
     this.Event = new EventEmitter()
     this.db = new MongodbClient()
     this.init()
+    this.Event.on('finished', () => {
+      console.log('--finished called--');
+      this.getNext()
+    })
   }
   init() {
+    console.log('start load html', this.url);
     this.loadHtml(this.url, this.parseHtml)
   }
 
+  getNext() {
+    console.log('----start next----');
+    this.currentPage = parseInt(this.currentPage) + 1
+    this.url = this.url.replace(/\d+$/, this.currentPage)
+    setTimeout(() => {
+      this.init()
+    }, 3000)
+  }
+
   loadHtml(url, done) {
-    callback = callback.bind(this)
+    done = done.bind(this)
     const options = {
       url: url,
       headers: {
@@ -34,6 +48,7 @@ class Spider {
         console.error('err', err);
       }
 
+      console.log('---load html---', res.statusCode);
       if(res.statusCode === 200) {
         done(body)
       }
@@ -43,13 +58,39 @@ class Spider {
 
   parseHtml(html) {
     const $ = cherrio.load(html)
-    this.imgList = Array.from($('.thumb img')).map(item => $(item).attr('data-src'))
-    this.linkList = Array.from($('.thumb .preview')).map(item => $(item).attr('href'))
-    console.log('imgList', this.imgList);
-    console.log('linkList', this.linkList);
+    const nodeList = Array.from($('.thumb')).map(item => {
+      const id = $(item).attr('data-wallpaper-id')
+      const thumb = $(item).find($('img.lazyload')).attr('data-src')
+      const like =  $(item).find($('a.wall-favs')).text()
+      const preview = $(item).find('a.preview').attr('href')
+      const fullSrc = `https://wallhaven.cc/w/${id}`
+      const wallRes = $(item).find('span.wall-res').text().split(/\s\x\s/g)
+      const width = wallRes[0]
+      const height = wallRes[1]
+      return  {
+        id,
+        tag: this.tag,
+        thumb,
+        like,
+        preview,
+        width,
+        height,
+        fullSrc
+      }
+    })
+    console.log('--get nodeList count:--', nodeList.length);
+    this.dbSave(nodeList)
+  }
 
-    this.loadThumb(this.imgList)
-    this.loadFullThumb(this.linkList)
+  getPageCount(html) {
+    /**
+     <ul class="pagination" role="navigation"
+                data-pagination="{&quot;total&quot;:379,&quot;current&quot;:1,&quot;url&quot;:&quot;https:\/\/wallhaven.cc\/hot?page=1&quot;}">
+     */
+    const $ = cherrio.load(html)
+    const thumbListingPageNum = $(html).find($('.pagination')).attr('data-pagination')
+    console.log('thumbListingPageNum', thumbListingPageNum);
+
   }
 
   loadFullThumb(list = []) {
@@ -107,11 +148,39 @@ class Spider {
       console.log('file exists:', filepath);
     }
   }
+
+  async dbSave(list = []) {
+    if(list.length <= 0) return;
+
+    // const Model = this.db.Thumb
+    const newData = []
+    for(let obj of list) {
+      const existsList = await this.db.find({id: obj.id })
+      if(Array.isArray(existsList) && existsList.length > 0) {
+        console.log(`id: ${obj.id} had existsed`);
+      } else {
+        newData.push(obj)
+      }
+    }
+
+    if(newData.length > 0) {
+      console.log('insert new data of: ', newData.length);
+      await this.db.insertData(newData, () => {
+        this.Event.emit('finished')
+      })
+
+    } else {
+      console.log('no new data');
+      this.Event.emit('finished')
+    }
+
+
+  }
 }
 
 const dir = '/Users/mhy/Pictures/spider'
-// https://wallhaven.cc/hot?page=3
-const url = `https://wallhaven.cc/latest?page=1`
+// https://wallhaven.cc/hot?page=1
+const url = `https://wallhaven.cc/latest?page=14`
 
 const spider = new Spider({url, dir})
 
