@@ -61,6 +61,5 @@ function handler(data) {
     })
 
   }
-  client.Thumb.update()
 }
 init()

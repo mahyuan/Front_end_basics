@@ -13,7 +13,7 @@ class Spider {
     this.tag = this.url.replace(/https\:\/\/\w+\.\w+\//, '').replace(/\?.*/, '')
     this.Event = new EventEmitter()
     this.db = new MongodbClient()
-    this.init()
+
     this.Event.on('finished', () => {
       console.log('--finished called--');
       this.getNext()
@@ -48,6 +48,7 @@ class Spider {
     const callback = (err, res, body) => {
       if(err) {
         console.error('err', err);
+        this.init()
       } else {
         console.log('---load html---', res.statusCode);
         if(res.statusCode === 200) {
@@ -57,13 +58,7 @@ class Spider {
 
     }
     console.log('---start request---');
-    try {
-      request(options, callback)
-
-    } catch (error) {
-      console.error('reuest error, retry then:');
-      request(options, callback)
-    }
+    request(options, callback)
   }
 
   parseHtml(html) {
@@ -92,46 +87,6 @@ class Spider {
     })
     console.log('--get nodeList count:--', nodeList.length);
     this.dbSave(nodeList)
-  }
-
-  getPageCount(html) {
-    /**
-     <ul class="pagination" role="navigation"
-                data-pagination="{&quot;total&quot;:379,&quot;current&quot;:1,&quot;url&quot;:&quot;https:\/\/wallhaven.cc\/hot?page=1&quot;}">
-     */
-    const $ = cherrio.load(html)
-    const thumbListingPageNum = $(html).find($('.pagination')).attr('data-pagination')
-    console.log('thumbListingPageNum', thumbListingPageNum);
-
-  }
-
-  loadFullThumb(list = []) {
-    if(Array.isArray(list)) {
-      for(let href of list) {
-        this.loadHtml(href, this.parseFullThumb)
-      }
-    }
-  }
-
-  parseFullThumb(html) {
-    const $ = cherrio.load(html)
-    const data = $('#wallpaper').data()
-    /*
-    {
-      cfsrc: 'https://w.wallhaven.cc/full/lm/wallhaven-lm5djp.jpg',
-      wallpaperId: 'lm5djp',
-      wallpaperWidth: 2446,
-      wallpaperHeight: 4008
-    }
-    */
-    if(typeof data === 'object' && 'cfsrc' in data)  {
-      const imgSrc = data.cfsrc
-      const arr = imgSrc.split('/')
-      const fileEnd = arr[arr.length - 1].replace(/[\s\S]*\-/, '')
-      const filename = `${data.wallpaperWidth}x${data.wallpaperHeight}-${fileEnd}`
-      let filepath = path.join(this.dir, 'full', filename)
-      this.loadFile(imgSrc, filepath)
-    }
   }
 
   loadThumb(list = []) {
@@ -194,4 +149,5 @@ const url = `https://wallhaven.cc/latest?page=1145`// 该分类一共13523页
 // const url = 'https://wallhaven.cc/toplist?page=1' // 该分类一共135页
 
 const spider = new Spider({url, dir})
+spider.init()
 
