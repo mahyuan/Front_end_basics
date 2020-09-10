@@ -30,30 +30,40 @@ class Spider {
     this.url = this.url.replace(/\d+$/, this.currentPage)
     setTimeout(() => {
       this.init()
-    }, 3000)
+    }, 5000)
   }
 
   loadHtml(url, done) {
     done = done.bind(this)
     const options = {
+      method: 'GET',
       url: url,
       headers: {
         'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36"
       },
+      timeout: 20000,
       Connection:'keep-alive',
       Referer: this.url
     }
     const callback = (err, res, body) => {
       if(err) {
         console.error('err', err);
+      } else {
+        console.log('---load html---', res.statusCode);
+        if(res.statusCode === 200) {
+          done(body)
+        }
       }
 
-      console.log('---load html---', res.statusCode);
-      if(res.statusCode === 200) {
-        done(body)
-      }
     }
-    request(options, callback)
+    console.log('---start request---');
+    try {
+      request(options, callback)
+
+    } catch (error) {
+      console.error('reuest error, retry then:');
+      request(options, callback)
+    }
   }
 
   parseHtml(html) {
@@ -64,6 +74,7 @@ class Spider {
       const like =  $(item).find($('a.wall-favs')).text()
       const preview = $(item).find('a.preview').attr('href')
       const fullSrc = `https://wallhaven.cc/w/${id}`
+      const full = `https://w.wallhaven.cc/full/ey/wallhaven-${id}.jpg`
       const wallRes = $(item).find('span.wall-res').text().split(/\s\x\s/g)
       const width = wallRes[0]
       const height = wallRes[1]
@@ -75,6 +86,7 @@ class Spider {
         preview,
         width,
         height,
+        full,
         fullSrc
       }
     })
@@ -165,10 +177,8 @@ class Spider {
 
     if(newData.length > 0) {
       console.log('insert new data of: ', newData.length);
-      await this.db.insertData(newData, () => {
-        this.Event.emit('finished')
-      })
-
+      let result = await this.db.insertData(newData)
+      result && this.Event.emit('finished')
     } else {
       console.log('no new data');
       this.Event.emit('finished')
@@ -179,8 +189,9 @@ class Spider {
 }
 
 const dir = '/Users/mhy/Pictures/spider'
-// https://wallhaven.cc/hot?page=1
-const url = `https://wallhaven.cc/latest?page=14`
+// const url = "https://wallhaven.cc/hot?page=386" // 最大386页
+const url = `https://wallhaven.cc/latest?page=1145`// 该分类一共13523页
+// const url = 'https://wallhaven.cc/toplist?page=1' // 该分类一共135页
 
 const spider = new Spider({url, dir})
 

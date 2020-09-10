@@ -27,6 +27,7 @@ class MongoDb {
       tag: String,
       thumb: String,
       fullSrc: String,
+      full: String,
       width: String,
       height: String,
       like: String,
@@ -35,28 +36,34 @@ class MongoDb {
     })
     this.Thumb = mongoose.model('Thumb', thumbSchema, 'thumb')
   }
-  insertData(data, cb) {
-    if(Array.isArray(data)) {
-      this.Thumb.insertMany(data, {}, (err, res) => {
-        if(err) throw err
-        console.log('insert array successfull');
-        cb()
-      })
+  insertData(data) {
+    return new Promise((resolve, rejcet) => {
+      if(Array.isArray(data)) {
+        this.Thumb.insertMany(data, {}, (err, res) => {
+          if(err) throw err
+          console.log('insert array successfull');
+          resolve(res)
+        })
 
-    } else {
-      this.Thumb.create(data, {}, (err, res) => {
-        if(err) throw err
-        console.log('insert data successfull', res);
-      })
-    }
+      } else {
+        this.Thumb.create(data, {}, (err, res) => {
+          if(err) throw err
+          console.log('insert data successfull', res);
+          resolve(res)
+        })
+      }
+
+    })
   }
 
   find(filter = {}) {
-    this.Thumb.find(filter).exec((err, result) => {
-      if(err) {
-        console.error(e);
-      }
-      // console.log('find reuslt:');
+    return new Promise((resolve, rejcet) => {
+      this.Thumb.find(filter).exec((err, result) => {
+        if(err) {
+          console.error(e);
+        }
+        resolve(result)
+      })
     })
   }
 
