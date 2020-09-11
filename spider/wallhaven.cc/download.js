@@ -13,7 +13,7 @@ const { resolve } = require('bluebird')
 const Event = new EventEmitter()
 Event.on('update', updateHandler)
 
-let index = 203
+let index = 1947
 let total = 0
 const dir = '/Users/mhy/Pictures/spider'
 const query = {tag: { $eq: 'hot' }}
@@ -61,6 +61,7 @@ function loadHtml(url) {
   const callback = (err, res, body) => {
     if(err) {
       console.error('err', err);
+      next()
     } else {
       console.log('---load html---', res.statusCode);
       if(res.statusCode === 200) {
