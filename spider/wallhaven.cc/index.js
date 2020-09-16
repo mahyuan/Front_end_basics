@@ -144,9 +144,9 @@ class Spider {
 }
 
 const dir = '/Users/mhy/Pictures/spider'
-// const url = "https://wallhaven.cc/hot?page=386" // 最大386页
-const url = `https://wallhaven.cc/latest?page=11336`// 该分类一共13523页
-// const url = 'https://wallhaven.cc/toplist?page=1' // 该分类一共135页
+// const url = "https://wallhaven.cc/hot?page=19" // 最大386页
+const url = `https://wallhaven.cc/latest?page=1977`// 该分类一共13523页
+// const url = 'https://wallhaven.cc/toplist?page=136' // 该分类一共135页
 
 const spider = new Spider({url, dir})
 spider.init()
