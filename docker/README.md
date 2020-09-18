@@ -2,6 +2,35 @@
 
 https://yeasy.gitbook.io/docker_practice/
 
+```
+docker run -itd --name mongo -v db-volume:/data/db  -p 27017:27017 mongo --auth
+docker exec -it mongo mongo admin
+
+
+```
+
+修改用户权限：
+```
+
+
+```
+
+
+
+```bash
+docker run -itd  --name mongo \
+    -p 27017:27017 \
+    -v db-volume:/data/db \
+    -e MONGO_INITDB_ROOT_USERNAME=admin \
+    -e MONGO_INITDB_ROOT_PASSWORD=@38xg12g23SA \
+    mongo
+
+
+docker run -tid --name mongo \
+    -p 27017:27017 \
+    -v db-volume:/data/db \
+    mongo -auth
+```
 
 
 resources
@@ -10,11 +39,6 @@ resources
 docker run -itd --name mongo -v db-volume:/data/db  -p 27017:27017 mongo --auth
 
 docker exec -it mongo mongo admin
-db.createUser({ user:'admin',pwd:'1234565',roles:[ { role:'userAdminAnyDatabase', db: 'admin'}]});
-db.auth('admin', '123456')
-
-db.createUser({ user:'root',pwd:'123456',roles:[ { role:'root', db: 'admin'}]});
-db.createUser({ user:'dbAdmin',pwd:'123456',roles:[ { role:'dbAdmin', db: 'admin'}]});
 ```
 
 
