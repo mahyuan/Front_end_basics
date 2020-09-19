@@ -1,4 +1,5 @@
 let createArr = require('./createArr.js')
+let count = 100000
 /**
  * 冒泡排序 BubbleSort
  * 冒泡排序的算法思想如下（升序排序）：
@@ -6,35 +7,41 @@ let createArr = require('./createArr.js')
  * 2.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样最终最大数被交换到最后的位置
  * 3.除了最后一个元素以外，针对所有的元素重复以上的步骤
  * 4.重复步骤1~3，直到排序完成
+ *
+ * 算法复杂度：
+ * 最好最坏时间复杂度都是： n2
+ *
+ * 特点： 与插入排序需要相同的运行时间，但是交互次数确有差异，插入排序在最好 情况下只n次交换
  */
 // var arr = [22,32,11,22,43,90,53,43,23,54,19]
 // var arr = []
 
 
-let arr = createArr(1000)
-// console.log(arr, 'arr')
-console.log(arr.length, 'arr.length')
 console.time('createArr')
+let arr = createArr(count)
+// console.log(arr, 'arr')
+// console.log(arr.length, 'arr.length')
 console.timeEnd('createArr')
-console.log(Math.max(...arr), 'max')
+// console.log(Math.max(...arr), 'max')
 
 function bubbleSort(data) {
+
 	var temp = 0
 	for (var i = data.length ; i > 0; i--) {
 		for (var j = 0; j < i - 1; j++) {
 			if(data[j] > data[j+1]) {
 				temp = data[j]
 				data[j] = data[j+1]
-				data[j+1] = temp		
+				data[j+1] = temp
 			}
 		}
 	}
 	return data
 }
+console.time('bubbleSort')
 bubbleSort(arr)
 // console.log(bubbleSort(arr), 'bubbleSort')
-console.time('bubbleSort') 
-console.timeEnd('bubbleSort') 
+console.timeEnd('bubbleSort')
 
 /**
  * 选择排序（SelctionSort）
@@ -42,32 +49,37 @@ console.timeEnd('bubbleSort')
  * 将最小的元素放到数组的第一个位置上，然后从数组的第二个位置开始继续执行上述步骤。当进行到数组倒数第二个位置的时候，所有的数据就完成了排序。
  * 选择排序同样会用到嵌套循环，外循环从数组第一个位置移到倒数第二个位置；内循环从第二个位置移动到数组最后一个位置，查找比当前外循环所指向的元素还要小的元素，
  * 每次内循环结束后，都会将最小的值放到合适的位置上。
+ *
+ * 算法复杂度：
+ * 最好最坏： n2
+ * 交换操作介于： 0和 n-1次之间
+ * 特点：
+ * 交换次数比冒泡排序少， 由于交换所需cpu时间比比较所需时间多，n较小是，选择排序比冒泡排序快
+ * 原地操作几乎是选择排序唯一的优点，当空间复杂度 要求较高时，可以考虑 选择排序
  */
 
 function selctionSort(data) {
 	for (var i = 0; i < data.length; i++) {
 		var temp = 0,
-			min = data[i],
 			index = i;
 		for (var j = i + 1; j < data.length; j++) {
-			if (min > data[j]) {
-				min = data[j]
+			if (data[index] > data[j]) {
 				index = j
 			}
 		}
 		temp = data[i]
-		data[i] = min
+		data[i] = data[index]
 		data[index] = temp
-
 	}
 
 	return data
 }
+arr = createArr(count)
+console.time('selctionSort')
 selctionSort(arr)
 // console.log(selctionSort(arr), 'selctionSort')
-console.time('selctionSort') 
-console.timeEnd('selctionSort') 
-/** 
+console.timeEnd('selctionSort')
+/**
  * 插入排序（insertionSort）
  * 插入排序有点类似人类按字母顺序对数据进行排序，就如同你打扑克牌一样，将摸来的扑克按大小放到合适的位置一样。它的原理就是通过嵌套循环，外循环将数组元素挨个移动，
  * 而内循环则对外循环中选中的元素及它后面的元素进行比较；如果外循环中选中的元素比内循环中选中的元素小，那么数组元素会向右移动，为内循环中的这个元素腾出位置。
@@ -78,6 +90,14 @@ console.timeEnd('selctionSort')
  * 4.重复步骤3，直到找到已排序的元素小于或者等于新元素的位置
  * 5.将新元素插入到该位置
  * 6.重复步骤2~5，直到排序完成
+ *
+ * 算法复杂度:
+ * 平均时间复杂度: n2
+ * 最坏时间复杂度： n2， 最坏的情况， 数据降序排列， n2次
+ * 最优时间复杂度： n 最好的情况，数据已经升序排列了， 需要进行n-1次
+ * 空间复杂度：总共O(n)，需要辅助空间O(1)
+ *
+ * 特点：插入排序不适合数据量比较大的应用，数据量小于1000或者元素大致上按照顺序排列的情况下可以使用
  */
 function insertionSort(data) {
 	for (var i = 0; i < data.length; i++) {
@@ -91,10 +111,11 @@ function insertionSort(data) {
 	}
 	return data
 }
+arr = createArr(count)
+console.time('insertionSort')
 insertionSort(arr)
 // console.log(insertionSort(arr), 'insertionSort')
-console.time('insertionSort') 
-console.timeEnd('insertionSort') 
+console.timeEnd('insertionSort')
 
 /**
  * 希尔排序（Shell Sort）
@@ -126,9 +147,10 @@ function shallSort(array) {
 
 	return array;
 }
+arr = createArr(count)
+console.time('shallSort')
 shallSort(arr)
 // console.log(shallSort(arr), 'shallSort')
-console.time('shallSort')
 console.timeEnd('shallSort')
 
 /**
@@ -138,7 +160,7 @@ console.timeEnd('shallSort')
  * 1.把长度为n的输入序列分成两个长度为n/2的子序列；
  * 2.对这两个子序列分别采用归并排序；
  * 3.将两个排序好的子序列合并成一个最终的排序序列
- * 
+ *
  */
 function mergeSort ( array ) {
 	var len = array.length;
@@ -166,13 +188,14 @@ function merge(left, right) {
 		result.push(right.shift());
 	return result;
 }
+arr = createArr(count)
+console.time('mergeSort')
 mergeSort(arr)
 // console.log(mergeSort(arr), 'mergeSort')
-console.time('mergeSort')
 console.timeEnd('mergeSort')
 
 
-/** 
+/**
  * 快速排序（Quicksort）
  * 快速排序是处理大数据最快的排序算法之一，它也是一种分而治之的算法，通过递归方式将数据依次分解为包含较小元素和较大元素的不同子序列，会不断重复这个步骤，
  * 直到所有的序列全部为有序的，最后将这些子序列一次拼接起来，就可得到排序好的数据。
@@ -195,9 +218,10 @@ function quickSort( arr ){
 	}
 	return quickSort( left ).concat( pivot, quickSort( right ));
 }
+arr = createArr(count)
+console.time('quickSort')
 quickSort(arr)
 // console.log(quickSort(arr), 'quickSort')
-console.time('quickSort')
 console.timeEnd('quickSort')
 
 module.exports = {
@@ -208,4 +232,4 @@ module.exports = {
 	mergeSort,
 	quickSort
 }
-console.log(module)
+// console.log(module)

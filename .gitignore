@@ -8,3 +8,4 @@ node_modules
 *.swap
 yarn.lock
 package-lock.json
+data

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .question {
+            color: red;
+        }
+        .message {
+            color: blue;
+        }
+        #v {
+          width: 360px;
+          height: 220px;
+        }
+        img {
+          width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <video width="320" height="220" id="v"></video>
+    <button id="takePhoto">take photo</button>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <button id="flip-button">flip-button</button>
+    <script src="./getUserMedia.js"></script>
+    <img id="photo" src="" alt="">
+</body>
+</html>
