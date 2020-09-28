@@ -3,7 +3,7 @@
 https://yeasy.gitbook.io/docker_practice/
 
 ```
-docker run -itd --name mongo -v db-volume:/data/db  -p 27017:27017 mongo --auth
+docker run -itd --name mongo -v db-volume:/data/db --network my-net  -p 27017:27017  mongo --auth
 docker exec -it mongo mongo admin
 
 

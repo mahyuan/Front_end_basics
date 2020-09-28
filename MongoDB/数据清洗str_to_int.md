@@ -42,3 +42,24 @@ db.video_info.find({_id: ObjectId('5e81a4a5cd6041ec4e009054')}).forEach(function
     db.video_info.save(x)
   })
 ```
+
+```js
+var list =  [
+    "http://h1.ioliu.cn/bing/SouthMoravian_ZH-CN13384331455_640x480.jpg?imageslim",
+    "http://h1.ioliu.cn/bing/SoundSuits_ZH-CN11561095548_640x480.jpg?imageslim",
+    "http://h1.ioliu.cn/bing/SproutVideo_ZH-CN11890393462_640x480.jpg?imageslim",
+    "http://h1.ioliu.cn/bing/SaronicGulf_ZH-CN8379891695_640x480.jpg?imageslim",
+ ]
+
+var index = 0
+db.project.find({}).forEach(function(x) {
+    index += 1
+    var ll = list.slice(index * 10, (index + 1)* 10 )
+    var id = x._id
+
+    // db.project.update({_id: id}, {$set: {more_info: ll}})
+    // db.project.update({_id: id}, {$pop: {more_info: 1}})
+})
+
+db.getCollection('project').find()
+```
