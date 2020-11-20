@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div>sse html</div>
+<script>
+  const eventSource = new EventSource('//localhost:8888/sse', {withCredentials: true})
+  eventSource.onmessage = e => {
+    console.log('onmessage event data', e);
+  }
+  eventSource.onopen = e => {
+    console.log('onopen event', e);
+  }
+  eventSource.onerror = e => {
+    console.log('onerror event', e);
+  }
+  eventSource.onclose = e => {
+    console.log('onclose event', e);
+  }
+</script>
+</body>
+</html>
