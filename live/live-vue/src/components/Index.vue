@@ -8,6 +8,7 @@
         name="url"
         cols="20"
         rows="4"
+        @change="handleChange"
         ></textarea>
     </div>
     <div class="player">
@@ -41,6 +42,9 @@ export default {
     this.destroyPlayer()
   },
   methods: {
+    handleChange() {
+      this.initPlayer()
+    },
     initPlayer() {
       const video = this.$refs.video
       if(video && flvjs.isSupported()) {
