@@ -33,9 +33,16 @@ app.use(async (ctx, next) => {
   const stream = new PassThrough()
   ctx.status = 200
   ctx.body = stream
+  let index = 0
 
-  setInterval(() => {
-    stream.write(`data:${new Date()}\n\n`)
+  let timer = setInterval(() => {
+    index++
+    if(index <= 10) {
+      stream.write(`data:${new Date()}-${index}\n\n`)
+    } else {
+      clearInterval(timer)
+      stream.end(`data:数据已写完\n\n`)
+    }
   }, 1000)
 })
 
