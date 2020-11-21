@@ -31,7 +31,7 @@ export default {
   name: 'Index',
   data() {
     return {
-      url: "http://localhost:8000/live/test.flv",
+      url: "https://cdn.hyuan.site/uploads/2_872skUoC/nnGy2Bw.flv",
       plyer: null
     }
   },
