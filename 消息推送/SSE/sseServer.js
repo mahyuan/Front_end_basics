@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const { PassThrough } = require('stream')
+const crypto = require('crypto')
 
 const app = new Koa()
 
@@ -30,18 +31,35 @@ app.use(async (ctx, next) => {
     'Connection': 'keep-alive'
   })
 
+  let timer = null
   const stream = new PassThrough()
+  stream.on('close', (event) => {
+    console.log('[stream closed event]');
+    clearInterval(timer)
+    stream.end()
+  })
+  stream.on('data', () => {
+    // console.log('[on data event]');
+  })
   ctx.status = 200
   ctx.body = stream
   let index = 0
 
-  let timer = setInterval(() => {
+  timer = setInterval(() => {
     index++
+    const data = getRandomData()
     if(index <= 10) {
-      stream.write(`data:${new Date()}-${index}\n\n`)
+      stream.write(`data: ${JSON.stringify(data)}\n\n`)
     } else {
       clearInterval(timer)
-      stream.end(`data:数据已写完\n\n`)
+      const emptyData = {
+        code: 1,
+        data: {
+          date: new Date().toUTCString(),
+          msg: 'no more data'
+        }
+      }
+      stream.end(`data:${JSON.stringify(emptyData)}\n\n`)
     }
   }, 1000)
 })
@@ -49,3 +67,17 @@ app.use(async (ctx, next) => {
 app.listen(8888, () => {
   console.log('listening http://localhost:8888');
 })
+
+function getRandomData() {
+  // let randomNum =  (Math.random() * 100).toFixed()
+  // let hash = crypto.createHash('sha256').update(randomNum).digest('hex')
+  let hash = crypto.randomBytes(10).toString('hex')
+  console.log('hash', hash);
+  return {
+    code: 0,
+    data: {
+      hash: hash,
+      date: new Date().getTime()
+    }
+  }
+}

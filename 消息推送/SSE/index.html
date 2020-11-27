@@ -6,21 +6,81 @@
   <title>Document</title>
 </head>
 <body>
-<div>sse html</div>
+  <h1>SSE DEMO</h1>
+  <button id="open">open</button>
+  <button id="close">close</button>
+  <button id="clear">clear</button>
+  <div class="wrapper">
+    <ul id="list"></ul>
+  </div>
 <script>
-  const eventSource = new EventSource('//localhost:8888/sse', {withCredentials: true})
-  eventSource.onmessage = e => {
-    console.log('onmessage event data', e);
+  var listEL = document.getElementById('list')
+  var eventSource = null
+  function openEventSource() {
+    eventSource = new EventSource('//localhost:8888/sse', { withCredentials: true })
+    eventSource.onmessage = onmessageHandler
+    eventSource.onopen = e => {
+      console.log('onopen event', e);
+    }
+    eventSource.onerror = e => {
+      console.error('onerror event', e);
+    }
+    eventSource.onclose = e => {
+      console.log('onclose event', e);
+    }
   }
-  eventSource.onopen = e => {
-    console.log('onopen event', e);
+
+  var openBtn = document.getElementById('open')
+  var closeBtn = document.getElementById('close')
+  var clearBtn = document.getElementById('clear')
+  openBtn.onclick = () => {
+    if(eventSource) {
+      const readyState = eventSource.readyState
+      console.log('readyState', readyState); // 1, 2, ,3
+      if(readyState === 1) {
+        eventSource.close()
+      }
+    }
+    openEventSource()
   }
-  eventSource.onerror = e => {
-    console.log('onerror event', e);
+  closeBtn.onclick = () => {
+    if(eventSource) {
+      eventSource.close()
+    }
   }
-  eventSource.onclose = e => {
-    console.log('onclose event', e);
+  clearBtn.onclick = () => {
+    listEL.innerHTML = null
   }
+  function onmessageHandler(event) {
+    const data = event.data ? JSON.parse(event.data) : event.data
+    console.log('[onmessage event call]', data)
+    render(data)
+  }
+  function render(resp = {})  {
+    const pureObject = Object.prototype.toString.call(resp) === '[object Object]'
+    if(pureObject) {
+      const { hash, date, msg } = resp.data
+      let text = new Date(date).toLocaleString()
+      let style = ''
+
+      if(resp.code === 0) {
+        text +=  ` <strong>${hash}</strong>`
+      } else if(resp.code === 1){
+        text +=  ` <strong>${msg}</strong>`
+        style = 'color: red;'
+      }
+      insertHtml('ol', text, style)
+    }
+  }
+  function insertHtml(tag, text, style = '') {
+    let element = document.createElement(tag)
+    element.innerHTML = text
+    listEL.appendChild(element)
+    if(style) {
+      element.style = style
+    }
+  }
+
 </script>
 </body>
 </html>
