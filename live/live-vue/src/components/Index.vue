@@ -13,11 +13,8 @@
     <div class="player">
       <video
         ref="video"
-        width="420"
-        height="280"
         muted="false"
         controls
-        autoplay
         ></video>
     </div>
   </div>
@@ -81,11 +78,13 @@ export default {
   flex-direction: column;
   align-items: center;
   text-align: left;
+  width: 100%;
+  height: 100%;
 }
 .form {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 1rem;
 }
 label {
   display: block;
@@ -96,17 +95,23 @@ label {
   width: 600px;
   margin-bottom: 10px;
 }
+video {
+  width: 80%;
+  /* height: ; */
+}
 @media screen and (max-width: 420px){
   .wrapper {
     width: 100%;
   }
   .form {
     width: 100%;
-    padding: 10px;
+    padding: 1rem;
   }
   .url-wrap {
     width: 80%;
   }
-
+  video {
+    width: 100%;
+  }
 }
 </style>
