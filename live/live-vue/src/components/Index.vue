@@ -6,8 +6,7 @@
         class="url-wrap"
         v-model="url"
         name="url"
-        cols="20"
-        rows="4"
+        rows="2"
         @change="handleChange"
         ></textarea>
     </div>
@@ -36,12 +35,19 @@ export default {
     }
   },
   mounted() {
+    this.decodeQuery()
     this.initPlayer()
   },
   beforeDestroy() {
     this.destroyPlayer()
   },
   methods: {
+    decodeQuery() {
+      const query = this.$route.query
+      if(query.url) {
+        this.url = query.url
+      }
+    },
     handleChange() {
       this.initPlayer()
     },
@@ -74,22 +80,33 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: left;
 }
 .form {
   display: flex;
+  flex-direction: column;
   margin: 10px;
 }
 label {
   display: block;
-  margin-right: 10px;
+  font-weight: bold;
+  line-height: 1.5;
 }
 .url-wrap {
-  width: 400px;
+  width: 600px;
+  margin-bottom: 10px;
 }
-.player {
-  /* border: 1px solid red; */
-}
-video {
+@media screen and (max-width: 420px){
+  .wrapper {
+    width: 100%;
+  }
+  .form {
+    width: 100%;
+    padding: 10px;
+  }
+  .url-wrap {
+    width: 80%;
+  }
 
 }
 </style>
