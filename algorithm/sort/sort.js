@@ -1,5 +1,5 @@
 let createArr = require('./createArr.js')
-let count = 100000
+let count = 100000000
 /**
  * 冒泡排序 BubbleSort
  * 冒泡排序的算法思想如下（升序排序）：
