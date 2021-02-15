@@ -19,3 +19,4 @@ mongo 127.0.0.1/dbmame -uadmin -p
 ```
 
 
+## 已拆分该项目为 wallhaven-splider
