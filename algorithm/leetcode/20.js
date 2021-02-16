@@ -69,3 +69,33 @@ isValid('()') === true
 isValid('()[]') === true
 isValid('({})')
 isValid('((]')
+
+
+/**
+ * 使用字典优化字典
+ */
+var isValid = function(s) {
+  if(s.length % 2 === 1) {
+      return false
+  }
+  let stack = []
+  const map = new Map()
+  map.set('(', ')')
+  map.set('{', '}')
+  map.set('[', ']')
+
+  for(let i = 0; i < s.length; i++) {
+      let item = s[i]
+      if(map.has(item)) {
+          stack.push(item)
+      } else {
+          let top = stack[stack.length - 1]
+          if(top === map.get(top)) {
+              stack.pop()
+          } else {
+              return false
+          }
+      }
+  }
+  return stack.length === 0
+};
