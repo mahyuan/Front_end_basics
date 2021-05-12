@@ -33,7 +33,7 @@ var size = myset.size
 for(let i of myset) {
   console.log(i)
 }
-for(let j of myset.keys) {
+for(let j of myset.keys()) {
   console.log(j)
 }
 for(let k of myset.values()) {
@@ -52,5 +52,5 @@ const myset2 = new Set([1, 2, 3, 4, 4])
 const intersection = new Set([...myset].filter(x => myset2.has(x)))
 
 // 差集
-const diff = new Set([...myset].filter(y => !myset2.has(x)))
+const diff = new Set([...myset].filter(y => !myset2.has(y)))
 
