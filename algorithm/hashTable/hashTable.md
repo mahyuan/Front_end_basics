@@ -33,3 +33,6 @@ list列表是有序的数据结构，删除中间位置的元素，后面的元�
 2. 此时后面要添加的元素直接添加进list2
 3. 此时要删除的元素则需要遍历两个list，比如先遍历list2，没找到再遍历list1，直到找到它，然后删除它
 4. 遍历list1，把list1中的元素添加进list2，list清空后，删除list1
+
+
+[重学 HashTable](http://www.alloyteam.com/2020/12/15164/)
