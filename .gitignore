@@ -6,6 +6,6 @@ node_modules
 .DS_Store
 *.log*
 *.swap
-yarn.lock
+# yarn.lock
 package-lock.json
 data
