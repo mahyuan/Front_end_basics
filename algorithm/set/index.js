@@ -1,8 +1,8 @@
 // 数组去重
 
-var arr = [1,1,2,2,3]
-var arr2 = [2,3,4]
-const noRepeatArr = Array.from( new Set(arr)) // [...new Set(arr)]
+var arr = [1, 1, 2, 2, 3]
+var arr2 = [2, 3, 4]
+const noRepeatArr = Array.from(new Set(arr)) // [...new Set(arr)]
 console.log(noRepeatArr)
 
 // 判断元素是否在集合中
@@ -46,13 +46,11 @@ size = myset.size
 const myarr = [...myset]
 const myarr1 = Array.from(myset)
 
-const myset2 = new Set([1,2,3,4,4])
-
+const myset2 = new Set([1, 2, 3, 4, 4])
 
 // 交集
 const intersection = new Set([...myset].filter(x => myset2.has(x)))
 
 // 差集
 const diff = new Set([...myset].filter(y => !myset2.has(x)))
-
 

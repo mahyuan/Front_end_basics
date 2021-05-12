@@ -71,50 +71,44 @@ function size() {
 }
 */
 
-
 class Queue {
   constructor () {
     this.dataStore = []
   }
   // 在队尾添加一个元素
-  enqueue(element) {
+  enqueue (element) {
     this.dataStore.push(element)
   }
   // 删除队首的元素并返回它
-  dequeue() {
-    if(this.empty()) return 'THe dataStore is empty';
-    else return this.dataStore.shift();
+  dequeue () {
+    if(this.empty()) {return 'THe dataStore is empty'} else {return this.dataStore.shift()}
   }
   // 将队列清空
-  clear() {
+  clear () {
     this.dataStore = []
   }
   // 判断队列是否为空
-  empty() {
-    if (this.dataStore.length == 0 ) return true;
-    else return false;
+  empty () {
+    if (this.dataStore.length == 0) {return true} else {return false}
   }
   // 读取队列首的元素；
-  front() {
-    if(this.empty()) return 'THe dataStore is empty';
-    else return this.dataStore[0]
+  front () {
+    if(this.empty()) {return 'THe dataStore is empty'} else {return this.dataStore[0]}
   }
   // 读取队列尾的元素；
-  back() {
-    if(this.empty()) return 'THe dataStore is empty';
-    else return this.dataStore[this.dataStore.length -1];
+  back () {
+    if(this.empty()) {return 'THe dataStore is empty'} else {return this.dataStore[this.dataStore.length - 1]}
   }
   // 打印队列元素
-  toString() {
-    return this.dataStore.toString();
+  toString () {
+    return this.dataStore.toString()
     // return this.dataStore.join('\n');
   }
   // 查看队列长度
-  size() {
-    return this.dataStore.length;
+  size () {
+    return this.dataStore.length
   }
 }
-
 
 // let arr = new Queue()
 
@@ -128,7 +122,6 @@ class Queue {
 // // arr.dequeue(2)
 // console.log(arr.toString())
 // console.log(arr)
-
 
 /**
  * 基数排序（radix sort）属于“分配式排序”（distribution sort），它是透过键值的部份资讯，将要排序的元素分配至某些“桶”中，藉以达到排序的作用，
@@ -145,54 +138,51 @@ class Queue {
  * 5.接下来将这些盒子中的数值重新串接起来，整个数列已经排序完毕：14, 22, 28, 39, 43, 55, 65, 73, 81, 93
  */
 
-
-
-//根据相应的（个位和十位）数值，将数字分配到相应队列
-function distribution(nums, queues, n, digit) {
+// 根据相应的（个位和十位）数值，将数字分配到相应队列
+function distribution (nums, queues, n, digit) {
   // digit 表示个位或十位的值
   for (var i = 0; i < n; i++) {
     if(digit == 1) {
-      queues[ nums[i] % 10].enqueue(nums[i]);
+      queues[nums[i] % 10].enqueue(nums[i])
     } else {
-      queues[Math.floor(nums[i] / 10 )].enqueue(nums[i]);
+      queues[Math.floor(nums[i] / 10)].enqueue(nums[i])
     }
   }
   // console.log('queues', queues)
 }
 
-//从队列中收集数字
-function collect( queues, nums ) {
-  var i = 0;
-  for (var digit = 0; digit < 10; digit++ ) {
-    while( !queues[digit].empty()) {
-      nums[i++] = queues[digit].front();
-      queues[digit].dequeue();
+// 从队列中收集数字
+function collect (queues, nums) {
+  var i = 0
+  for (var digit = 0; digit < 10; digit++) {
+    while(!queues[digit].empty()) {
+      nums[i++] = queues[digit].front()
+      queues[digit].dequeue()
     }
   }
 }
 
-
 // 基数排序
-var queues = []; // 队列数组
-var nums = [];  // 数字数组
+var queues = [] // 队列数组
+var nums = [] // 数字数组
 
 // 选十个0~99的随机数进行排序
 for (var i = 0; i < 10; i++) {
-  queues[i] = new Queue();
+  queues[i] = new Queue()
   // [0, 1) * 101 = [0, 101) <=100
   // floor() 方法执行的是向下取整计算，它返回的是小于或等于函数参数，并且与之最接近的整数。
-  nums[i] = Math.floor(Math.random() * 101);
+  nums[i] = Math.floor(Math.random() * 101)
 }
 
 // 排序之前
 console.log('排序之前:', nums)
 // 基数排序
-distribution( nums, queues, 10, 1);
-collect(queues, nums);
-distribution( nums, queues, 10, 10);
-collect(queues, nums);
+distribution(nums, queues, 10, 1)
+collect(queues, nums)
+distribution(nums, queues, 10, 10)
+collect(queues, nums)
 
-//排序之后
+// 排序之后
 console.log('排序之后:', nums)
 
 /**
@@ -206,71 +196,4 @@ console.log('排序之后:', nums)
  * 空的判断条件为:
  * 	 	rear == front。
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
