@@ -1,10 +1,10 @@
 {
-  "name": "Front_end_basics",
+  "name": "front-end-basics",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -32,11 +32,21 @@
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "7.12.10",
+    "@babel/preset-env": "^7.14.2",
+    "@types/jest": "^26.0.23",
+    "eslint-plugin-import": "2.22.1",
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.3",
     "eslint": "^5.10.0",
+    "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-vue": "^4.5.0",
     "jade": "^1.11.0",
+    "jest": "^26.6.3",
     "lodash": "^4.17.5"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.9.0"
   }
 }

@@ -5,6 +5,10 @@ module.exports = {
     "commonjs": true,
     "es6": true
   },
+  "plugins": ["jest"],
+  "env": {
+    "jest/globals": true
+  },
   "ecmaFeatures": {
     "no-unused-vars": 0,
     // lambda表达式

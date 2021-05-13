@@ -1,5 +1,5 @@
 
-/** 
+/**
  * Set 中所有元素都是唯一的
  */
 
@@ -54,9 +54,9 @@ var item = 0
 
 function append(arr, item) {
 	// var newArr = [...arr]
-	// es5 不支持展开操作符 
+	// es5 不支持展开操作符
 	var newArr = []
-	for (var i = 0; i < newArr.push(arr.length; i++) {)
+	for (var i = 0; i < arr.length; i++) {
 		newArr.push(arr[i])
 	}
 	newArr.push(item)
@@ -66,7 +66,7 @@ function append(arr, item) {
 // console.log(append(arr, item),arr)
 
 
-/** 
+/**
  * 在数组 arr 的 index 处添加元素 item。不要直接修改数组 arr，结果返回新的数组
  */
 
@@ -153,7 +153,7 @@ function sum(arr) {
     arr.forEach(function(val, idx, arr) {
         s += val;
     }, 0);
-  
+
     return s;
 };
 //eval：
@@ -161,7 +161,7 @@ function sum(arr) {
     return eval(arr.join("+"));
 };
 
-/** 
+/**
  * 统计数组 arr 中值等于 item 的元素出现的次数
  */
 //filter()-->利用指定的函数确定是否在返回的数组中包含某一项
@@ -209,14 +209,14 @@ function count(arr, item) {
 }
 
 
-/** 
+/**
  * 找出数组 arr 中重复出现过的元素
  */
 
 function duplicates(arr) {
     var a=arr.sort(),b=[];
     for(var i in a){
-        if(a[i]==a[i-1] && b.indexOf(a[i])==-1) b.push(a[i]); 
+        if(a[i]==a[i-1] && b.indexOf(a[i])==-1) b.push(a[i]);
     }
     return b;
 }//先排序，如果后一个与前一个相等且未保存，则保存。
@@ -272,7 +272,7 @@ function findAllOccurrences(arr, target) {
 	var newArr = []
     arr.forEach(function(val,i){
        val !== target || newArr.push(i)
-        
+
     })
     return newArr
 
@@ -324,32 +324,9 @@ function parse2Int(num) {
     return parseInt(num,10);
 }
 // 按10进制去处理字符串，碰到非数字字符，会将后面的全部无视
-/** 
+/**
  * parseInt(string, radix) 当参数 radix 的值为 0，或没有设置该参数时，parseInt() 会根据 string 来判断数字的基数。
  * 举例，如果 string 以 "0x" 开头，parseInt() 会把 string 的其余部分解析为十六进制的整数。如果 string 以 0 开头，
  * 那么 ECMAScript v3 允许 parseInt() 的一个实现把其后的字符解析为八进制或十六进制的数字。如果 string 以 1 ~ 9 的数字开头，
  * parseInt() 将把它解析为十进制的整数。
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
