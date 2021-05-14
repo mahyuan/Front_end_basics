@@ -1,4 +1,5 @@
-module.exports = {
+// module.exports = {
+export default {
   // The bail config option can be used here to have Jest stop running tests after
   // the first failure.
   bail: false,
@@ -25,6 +26,10 @@ module.exports = {
   // It is reflected in properties such as location.href.
   // @see: https://github.com/facebook/jest/issues/6769
   testURL: 'http://localhost/',
+
+  modulePaths: ["<rootDir>/algorithm/"],
+
+  // projects: ["<rootDir>/algorithm/*"],
 
   // @see: https://jestjs.io/docs/en/configuration#coveragethreshold-object
   coverageThreshold: {

@@ -1,92 +1,103 @@
 /* hashTable 哈希表 （散列表）
  */
-/*  hash 需要用到链表，这里再练习一下链表的实现  */
-function LinkedList() {
-  const Node = function(element) {
-    this.element = element
-    this.next = null
+import LinkedList from '../linkedList/LinkedList'
+
+const defaultHashTableSize = 32
+
+export default class HashTable {
+  /**
+   * @param {number} hashTableSize
+   */
+  constructor(hashTableSize = defaultHashTableSize) {
+    this.buckets = Array(hashTableSize)
+      .fill(null)
+      .map(() => new LinkedList())
+
+      // just to keep track of all actual keys in a fast way
+      this.keys = {}
   }
-  // head, length是内部属性，外部不可访问，所以不要绑定到this
-  let head = null
-  let lenght = 0
+  /**
+   * Converts key string to hash number
+   */
+  hash(key) {
+    const hash = Array.from(key)
+    .reduce((hashAccumulator, keySymbol) => {
+      return hashAccumulator + keySymbol.charCodeAt(0)
+    }, 0)
 
-  // 尾部添加元素
-  this.append = function(element) {
-    const node = new Node(element)
-
-    if(!head) {
-      head = node
-    } else {
-      let current = head
-      while (current.next) {
-        current = current.next
-      }
-      current.next = node
-    }
-    lenght++
+    return hash % this.buckets.length
   }
 
   /**
-   * 指定位置添加元素
-   * @param element any
-   * @param position int
-   * @return true | false
+   * @param {string} key
+   * @param {*} value
    */
-  this.insert = function(element, position) {
-    if(position < 0 || position > lenght) {
-      return false
-    }
+  set(key, value) {
+    const keyHash = this.hash(key)
+    this.keys[key] = keyHash
+    const bucketLinkedList = this.buckets[keyHash]
+    const node = bucketLinkedList.find({ callback: (nodeValue) => nodeValue.key === key})
 
-    const node = new Node(element)
-    let current = head
-    let previous = null
-    let index = 0
-    if(position ===0) {
-      node.next = current
-      head = node
+    if(!node) {
+      bucketLinkedList.append({key, value})
     } else {
-      while (index++ < position) {
-        previous = current
-        current = current.next
-      }
-      previous.next = node
-      node.next = current
+      node.value.value = value
     }
-    lenght++
   }
 
-  this.find = function(element) {
-    let current = head
-    while (current.next !== element) {
-      current = current.next
+  /**
+   * @param {string} key
+   * @return {*}
+   */
+  delete(key) {
+    const keyHash = this.hash(key)
+    delete this.keys[key]
+
+    const bucketLinkedList = this.buckets[keyHash]
+    const node = bucketLinkedList.find({ callback: nodeValue => nodeValue.key === key})
+
+    if(node) {
+      return bucketLinkedList.delete(node.value)
     }
-    return current
+
+    return null
   }
 
-  this.remove = function(element) {
-    const current = head
-    let previous
-    while (current.next) {
-      previous = current
-      if(current.element === element) {
-        previous.next = current.next
-        return true
-      } else {
-        current = current.next
-      }
-    }
+  /**
+   * @param {string} key
+   * @return {*}
+   */
+  get(key) {
+    const keyHash = this.hash(key)
+    const bucketLinkedList = this.buckets[keyHash]
+    const node = bucketLinkedList.find({ callback: nodeValue => nodeValue.key === key })
+
+    return node ? node.value.value : undefined
   }
-  this.removeAt = function(position){};
-  this.indexOf = function(element){};
-  this.isEmpty = function() {};
-  this.size = function() {
-    return lenght
-  };
-  this.toString = function(){};
-  this.print = function(){};
+
+  /**
+   * @param {string} key
+   * @return {boolean}
+   */
+  has(key) {
+    return Object.hasOwnProperty.call(this.keys, key)
+  }
+
+  /**
+   * @return {string[]}
+   */
+  getKeys() {
+    return Object.keys(this.keys)
+  }
+
+  /**
+   * @return {*[]}
+   */
+  getValues() {
+    return this.buckets.reduce((values, bucket) => {
+      const bucketValues = bucket.toArray()
+        .map(linkedListNode => linkedListNode.value.value)
+      return values.concat(bucketValues)
+    }, [])
+  }
 }
-
-
-let linkedList = new LinkedList()
-linkedList.append('a')
-linkedList.append('b')

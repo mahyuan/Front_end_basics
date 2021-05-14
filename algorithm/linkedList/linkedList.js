@@ -1,8 +1,8 @@
 /**
  * 单向链表
  */
-import Comparator from '../utils/Comparator';
-import LinkedListNode from './LinkedListNode'
+import Comparator from '../utils/Comparator.js';
+import LinkedListNode from './LinkedListNode.js'
 
 export default class LinkedList {
    /**
