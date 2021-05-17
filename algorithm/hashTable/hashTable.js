@@ -1,6 +1,6 @@
 /* hashTable 哈希表 （散列表）
  */
-import LinkedList from '../linkedList/LinkedList'
+import LinkedList from '../linkedList/LinkedList.js'
 
 const defaultHashTableSize = 32
 
