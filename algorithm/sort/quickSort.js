@@ -1,29 +1,49 @@
-// 快速排序
+// 快速排序, 这种方法比较耗内存，性能不佳，
 let createArr = require('./createArr.js')
 
 let arr = createArr(10000)
 
-function quickSort(arr) {
-	if ( arr.length == 0) {
-		return [];
-	}
-	var left = [];
-	var right = [];
-	var pivot = arr[0];
-	for (var i = 1; i < arr.length; i++) {
-		if (arr[i] < pivot) {
-			left.push( arr[i] );
-		} else {
-			right.push( arr[i] );
-		}
-	}
-	return quickSort( left ).concat( pivot, quickSort( right ));
+// 10E4倒叙数组时间23ms
+function quickSort(array) {
+  function quick(arr, left, right) {
+      let index;
+      if(arr.length > 1) {
+          index = partition(arr, left, right)
+          if(left < index - 1) {
+              quick(arr, left, index - 1)
+          }
+          if(index < right) {
+              quick(arr, index, right)
+          }
+      }
+  }
+  function partition (arr, left, right) {
+      // 取数组中间值作为主元是最优解
+      let pivot = arr[Math.floor((right + left) / 2)]
+      let i = left
+      let j = right
+
+      while(i <= j) {
+          while(arr[i] < pivot) {
+              i++
+          }
+          while(arr[j] > pivot) {
+              j--
+          }
+
+          if(i <= j) {
+              swap(i, j, arr)
+              i++
+              j--
+          }
+      }
+      return i
+  }
+
+ quick(array, 0, array.length)
 }
-// quickSort(arr)
-// console.time('quickSort')
-// console.timeEnd('quickSort')
 
-
+// 容易内容溢出
 function quick_sort(arr) {
 	if(!arr.length) return [];
 
@@ -45,7 +65,7 @@ function quick_sort(arr) {
 // console.time('quick_sort')
 // console.timeEnd('quick_sort')
 
-let state = true 
+let state = true
 setInterval(() => {
 	if(state){
 		console.time('quickSort')
