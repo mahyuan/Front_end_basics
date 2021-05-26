@@ -61,11 +61,17 @@ export default class LinkedList {
 
     let deleteNode = null
 
+    /**
+     * 删除时，先判断所删除的值是否是head，如果从head开始有多个连续的相同的值，则全部删除
+     */
     while(this.head && this.compare.equal(this.head.value, value)) {
       deleteNode = this.head
       this.head = this.head.next
     }
 
+    /**
+     * 遍历链表，查找要删除的值，删除所有满足条件的值
+     */
     let currentNode = this.head
 
     if(currentNode !== null) {
