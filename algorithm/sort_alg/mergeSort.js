@@ -3,6 +3,7 @@ const  { initArr }  = require('./utils')
 
 
 // 10E4倒叙数组时间 28ms
+// 10E5倒叙数组时间 222ms
 function mergeSort(arr) {
     function merge(left, right) {
         let result = [], il = 0, ir = 0
@@ -37,7 +38,7 @@ function mergeSort(arr) {
 
 
 // let count = 20
-let count = 10E4
+let count = 10E5
 // let count = 100000 // 10E4
 
 console.time('initArr')

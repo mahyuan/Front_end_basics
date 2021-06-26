@@ -23,7 +23,8 @@ function initArr(len) {
         arr.push(i)
         i--
     }
-    return shuffle(arr)
+    // return shuffle(arr)
+    return arr
 }
 
 /**
