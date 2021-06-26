@@ -43,16 +43,51 @@ function quickSort(array) {
 }
 
 
+// 10E4倒叙数组时间47ms
+function quick_sort(array) {
+  if(array.length <= 1) {
+      return array
+  }
+
+  let leftArr = []
+  let rightArr = []
+
+  let pivot = array.pop()
+  let centerArr = [pivot]
+
+  while(array.length > 0) {
+      let current = array.pop()
+      if(current === pivot) {
+          centerArr.push(current)
+      } else if(current < pivot) {
+          leftArr.push(current)
+      } else {
+          rightArr.push(current)
+      }
+  }
+
+  let leftSorted = quick_sort(leftArr)
+  let rightSorted = quick_sort(rightArr)
+
+  return leftSorted.concat(centerArr, rightSorted)
+}
+
+
 // let count = 20
 let count = 10E4
 
 console.time('initArr')
 let arr = initArr(count)
 console.timeEnd('initArr')
-// console.log(arr.toString())
+// console.log('arr before sorted:', arr.toString())
 
-console.time('b')
+console.time('quickSort')
 quickSort(arr)
-console.timeEnd('b')
+console.timeEnd('quickSort')
 
-// console.log(arr.toString())
+
+// console.time('quick_sort')
+// let arrSorted = quick_sort(arr)
+// console.timeEnd('quick_sort')
+// console.log('arr after sorted:', arrSorted.toString())
+
